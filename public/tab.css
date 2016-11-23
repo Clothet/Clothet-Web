@@ -1,0 +1,58 @@
+/* Style the list */
+ul.tab {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px; }
+
+/* Float the list items side by side */
+ul.tab li {
+  float: left;
+  background-color: #92A0AB;
+  margin-right: 1px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  width: 20%;
+  height: 40px; }
+
+/* Style the links inside the list items */
+ul.tab li a {
+  display: inline-block;
+  color: #eee;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+/* Change background color of links on hover */
+ul.tab li a:hover {
+  background-color: #3091a2;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px; }
+
+/* Create an active/current tablink class */
+ul.tab li a:focus,
+.active {
+  background-color: #2E7192;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px; }
+
+/* Style the tab content */
+.tabcontent1, .tabcontent2 {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  min-height: 100px;
+  height: 300px;
+  overflow: scroll;
+  overflow-x: hidden; }

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test</title>
+</head>
+<style type="text/css">
+.resize-drag {
+    /*     background-color: #29e;
+    color: white;
+    font-size: 20px;
+    font-family: sans-serif;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 30px 20px; */
+    position: absolute;
+    left: 300px;
+    /* This makes things *much* easier
+    /* box-sizing: border-box; */
+    border: 2px solid rgba(0,0,0,0);
+}
+
+.resize-drag:hover {
+    border: 2px solid #ccc;
+}
+
+.resize-container {
+    width: 800px;
+    height: 1000px;
+}
+</style>
+
+<body>
+    <div class="resize-container">
+        <h1 style="text-align: center; font-weight: 900 !important;">試衣間</h1>
+
+        <img  height="500px" src="./img/people.PNG">
+
+        <img width="150px" class="resize-drag" id="shirt" src="./img/sample-shirt.png" data-border="0" />
+        <img width="150px" class="resize-drag" id="shirt" src="./img/sample-pants.png" data-border="0" />
+
+        <img width="200px" class="resize-drag" id="shirt" src="./img/sample-skirt.png" data-border="0" />
+        <img width="150px" class="resize-drag" id="shirt" src="./img/sample-pants.png" data-border="0" />
+        <img width="70px" class="resize-drag" id="shirt" src="./img/sample-hat.png" data-border="0" />
+        
+        <div  style="z-index: -999; background-size: 100% 100%;position: absolute;right:0; top:0;width: 300px; height:500px;background-image: url('./img/closet.jpeg');background-repeat: no-repeat;"></div>
+
+
+
+    </div>
+
+</body>
+<script src="http://code.interactjs.io/v1.2.6/interact.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+var z = 0;
+$('.resize-drag').click(function(event) {
+    ++z;
+
+    $(this).css({
+        'z-index':z
+    });
+});
+
+interact('.resize-drag')
+    .draggable({
+        onmove: window.dragMoveListener,
+        
+    })
+    .resizable({
+        preserveAspectRatio: true,
+        edges: {
+            left: true,
+            right: true,
+            bottom: true,
+            top: true
+        }
+    })
+    .on('resizemove', function(event) {
+        var target = event.target,
+            x = (parseFloat(target.getAttribute('data-x')) || 0),
+            y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+        // update the element's style
+        target.style.width = event.rect.width + 'px';
+        target.style.height = event.rect.height + 'px';
+
+        // translate when resizing from top or left edges
+        x += event.deltaRect.left;
+        y += event.deltaRect.top;
+
+        target.style.webkitTransform = target.style.transform =
+            'translate(' + x + 'px,' + y + 'px)';
+
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
+        target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
+    });
+
+function dragMoveListener(event) {
+    var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+    // translate the element
+    target.style.webkitTransform =
+        target.style.transform =
+        'translate(' + x + 'px, ' + y + 'px)';
+
+    // update the posiion attributes
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+}
+
+// $('#shirt').click(function() {
+//     console.log()
+//     console.log($(this).attr('data-border'))
+//     if ($(this).attr('data-border') == "0") {
+//         $(this).css('border', "2px solid #ccc")
+//         $(this).attr('data-border', "1")
+//     } else {
+//         $(this).css('border', "")
+//         $(this).attr('data-border', "0")
+//     }
+// })
+
+// this is used later in the resizing and gesture demos
+window.dragMoveListener = dragMoveListener;
+</script>
+
+</html>
