@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 50px;
-    color: #fee;
+    color: #fff;
     font-size: 15px;
 }
 
@@ -30,55 +30,19 @@
             border-color: #ccc;
         }
     }
-    //tab
-    .nav-tabs {
-        margin-top: 10px;
-        // width: 100%;
-        li {
-            width: 20%;
-            height: 50px;
-            a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                height: 100%;
-                padding: 4px 10px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                font-size: 8px;
-                &:focus {
-                    background-color: #fff;
-                }
-                &:active {
-                    background-color: #fff;
-                }
-            }
-        }
-    }
-    .tab-content {
-        height: 500px;
-        // margin-bottom: 100px;
-    }
-    .tab-pane {
-        // display: inner-flex;
-        // align-items: center;
-        // justify-content: center;
-        // text-align: center;
-        height: 500px;
-        overflow-y: scroll;
-    }
     #trash-can {
         display: flex;
         align-items: center;
         justify-content: center;
         bottom: 0;
+        left: 0;
         height: 80px;
-        width: 100%;
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        // background-color:#f00;
+        width: 80px;
+        position: fixed;
+        border: 1px solid #ccc;
+        &:hover {
+            background-color: red;
+        }
     }
 }
 
@@ -89,6 +53,40 @@
     border-right: 1px solid #ccc;
     .inner-header {
         background-color: #8CB6CF;
+    }
+    #class-container {
+        height: 40px;
+        line-height: 40px;
+        background: #bbb;
+        text-align: center;
+        .class-icon {
+            display: inline-block;
+            margin: 5px 10px;
+            width: 30px;
+            height: 30px;
+        }
+        #boy-icon {
+            background: url('http://i2.cdn.cnn.com/cnnnext/dam/assets/131009154023-female-male-abuse-story-top.jpeg') no-repeat center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            &:hover {
+                background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mars_symbol.svg/220px-Mars_symbol.svg.png') no-repeat center center;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                cursor: pointer;
+            }
+        }
+    }
+    #store-container {
+        height: 60px;
+        .carousel-control {
+            background-image: none;
+            color: #888;
+        }
     }
 }
 

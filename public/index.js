@@ -133,6 +133,141 @@ var items = {
         img: './img/2870801_220.jpg',
         tab: 1
     },
+    '1': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1asdas': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1asdsa': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1aaa': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1asdsada': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1asdas': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1asd': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1asda': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1sadas': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1123123': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '112321312': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '123211': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '11231': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
+    '1111': {
+        id: '1',
+        name: '口袋來貘Tee',
+        store: 'Lativ',
+        price: '$249',
+        note: 'onSale',
+        img: './img/2870801_220.jpg',
+        tab: 1
+    },
     '2': {
         id: '2',
         name: '奧樂星GTee',

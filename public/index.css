@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  color: #fee;
+  color: #fff;
   font-size: 15px; }
 
 .glyphicon {
@@ -23,40 +23,18 @@
       border-right: 0;
       box-shadow: 0 0 0;
       border-color: #ccc; }
-  #left-column .nav-tabs {
-    margin-top: 10px; }
-    #left-column .nav-tabs li {
-      width: 20%;
-      height: 50px; }
-      #left-column .nav-tabs li a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        height: 100%;
-        padding: 4px 10px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: 8px; }
-        #left-column .nav-tabs li a:focus {
-          background-color: #fff; }
-        #left-column .nav-tabs li a:active {
-          background-color: #fff; }
-  #left-column .tab-content {
-    height: 500px; }
-  #left-column .tab-pane {
-    height: 500px;
-    overflow-y: scroll; }
   #left-column #trash-can {
     display: flex;
     align-items: center;
     justify-content: center;
     bottom: 0;
+    left: 0;
     height: 80px;
-    width: 100%;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc; }
+    width: 80px;
+    position: fixed;
+    border: 1px solid #ccc; }
+    #left-column #trash-can:hover {
+      background-color: red; }
 
 #middle-column {
   height: 100%;
@@ -65,6 +43,34 @@
   border-right: 1px solid #ccc; }
   #middle-column .inner-header {
     background-color: #8CB6CF; }
+  #middle-column #class-container {
+    height: 40px;
+    line-height: 40px;
+    background: #bbb;
+    text-align: center; }
+    #middle-column #class-container .class-icon {
+      display: inline-block;
+      margin: 5px 10px;
+      width: 30px;
+      height: 30px; }
+    #middle-column #class-container #boy-icon {
+      background: url("http://i2.cdn.cnn.com/cnnnext/dam/assets/131009154023-female-male-abuse-story-top.jpeg") no-repeat center center;
+      background-size: cover;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover; }
+      #middle-column #class-container #boy-icon:hover {
+        background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mars_symbol.svg/220px-Mars_symbol.svg.png") no-repeat center center;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        cursor: pointer; }
+  #middle-column #store-container {
+    height: 60px; }
+    #middle-column #store-container .carousel-control {
+      background-image: none;
+      color: #888; }
 
 #right-column {
   border-top: 1px solid #ccc; }
