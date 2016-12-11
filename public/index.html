@@ -4,40 +4,105 @@
 <head>
     <meta charset="utf-8">
     <title>clothes-helper</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="core.css">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="header.css">
     <link rel="stylesheet" type="text/css" href="tab.css">
     <link rel="stylesheet" type="text/css" href="select.css">
 </head>
+<!-- /////////////////////////////////////////////////// -->
 
 <body>
     <!-- header start -->
     <header>
-        <a href="/">
-            <div id="logo">酷衣櫥</div>
-        </a>
-        <div>
-            <a href="/" class='item item1'>
-            穿搭推薦
-        </a>
-            <a href="/test" class='item item2'>
-            試衣間
-        </a>
-            <div class="underline"></div>
+        <a id="logo" href="/">酷衣櫥</a>
+        <div id="link-container">
+            <a href="/">
+                <!-- <img class="icon" src="./img/Duck.jpg"> -->
+                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                <span>商店街</span>
+            </a>
+            <a href="/">
+                <!-- <img src="./img/Duck.jpg"> -->
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                <span>穿搭推薦</span>
+            </a>
+            <a href="/">
+                <!-- <img src="./img/Duck.jpg"> -->
+                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                <span>我的收藏</span>
+            </a>
+            <a href="#user">
+            </a>
+            <div id="user" class="dropdown">
+                <div class="dropdown-toggle" type="button" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <span id="user-name">Jackson</span>
+                    <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
+            </div>
         </div>
     </header>
     <!-- header end -->
     <div class="container-fluid">
         <div class="row">
             <!-- {/*left side colume*/} -->
-            <div class="col-sm-6 col-xs-12 inner-container">
+            <div id="left-column" class="col-sm-3 nopadding">
+                <div class="inner-header">
+                    <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                    <span>我的衣櫃</span>
+                </div>
+                <!-- ******************** -->
+                <div class="search-container">
+                    <div class="input-group stylish-input-group">
+                        <input type="text" class="form-control" placeholder="Search clothes...">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </span>
+                    </div>
+                </div>
+                <!-- ******************** -->
+                <div class="container">
+                    
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+                        <li><a data-toggle="tab" href="#menu4">Menu 4</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <h3>HOME</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <h3>Menu 1</h3>
+                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <h3>Menu 2</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                            <h3>Menu 3</h3>
+                            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ********* -->
                 <div class="block">
-                    <div class="title">服飾商店</div>
-                    <hr></hr>
+                    <!-- <div class="title">服飾商店</div> -->
+                    <!-- <hr></hr> -->
                     <!-- {/*dropdown*/} -->
-                    <div class="dropdown-container">
+                    <!-- <div class="dropdown-container">
                         <select class="minimal">
                             <option selected>Lativ</option>
                             <option>Hangten</option>
@@ -55,31 +120,30 @@
                             <option selected>Sales</option>
                             <option>All</option>
                         </select>
-                    </div>
-
+                    </div> -->
                     <!-- {/*Tabs*/} -->
-                    <ul class="tab">
+                    <!-- <ul class="tab">
                         <li><a href="javascript:void(0)" class="tablinks1 active" onclick="openTab1(event, 'tab1')">T-Shirt & 上衣</a></li>
                         <li><a href="javascript:void(0)" class="tablinks1" onclick="openTab1(event, 'tab2')">針織衫 & 襯衫</a></li>
                         <li><a href="javascript:void(0)" class="tablinks1" onclick="openTab1(event, 'tab3')">外套 & 大衣</a></li>
                         <li><a href="javascript:void(0)" class="tablinks1" onclick="openTab1(event, 'tab4')">褲裝 & 裙裝</a></li>
                         <li><a href="javascript:void(0)" class="tablinks1" onclick="openTab1(event, 'tab5')">其他</a></li>
-                    </ul>
+                    </ul> -->
                     <!-- 
                         tabContent!
                      -->
-                    <div id="tab1" class="tabcontent1" style="display: block;"></div>
+                    <!-- <div id="tab1" class="tabcontent1" style="display: block;"></div>
                     <div id="tab2" class="tabcontent1"></div>
                     <div id="tab3" class="tabcontent1"></div>
                     <div id="tab4" class="tabcontent1"> </div>
-                    <div id="tab5" class="tabcontent1"></div>
+                    <div id="tab5" class="tabcontent1"></div> -->
                     <!--  -->
                 </div>
                 <!-- {/} -->
                 <div class="block">
-                    <div class="title">個人服飾</div>
-                    <hr></hr>
-                    <ul class="tab">
+                    <!-- <div class="title">個人服飾</div> -->
+                    <!-- <hr></hr> -->
+                    <!-- <ul class="tab">
                         <li><a href="javascript:void(0)" class="tablinks2 active" onclick="openTab2(event, 'tab6')">T-Shirt & 上衣</a></li>
                         <li><a href="javascript:void(0)" class="tablinks2" onclick="openTab2(event, 'tab7')">針織衫 & 襯衫</a></li>
                         <li><a href="javascript:void(0)" class="tablinks2" onclick="openTab2(event, 'tab8')">外套 & 大衣</a></li>
@@ -90,11 +154,15 @@
                     <div id="tab7" class="tabcontent2"></div>
                     <div id="tab8" class="tabcontent2"></div>
                     <div id="tab9" class="tabcontent2"></div>
-                    <div id="tab10" class="tabcontent2"></div>
+                    <div id="tab10" class="tabcontent2"></div> -->
                 </div>
             </div>
             <!-- {/*right side colume*/} -->
-            <div class="col-sm-6 col-xs-12 inner-container">
+            <div id="middle-column" class="col-sm-6 nopadding">
+                <div class="inner-header">
+                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    <span>商店區</span>
+                </div>
                 <div class="block">
                     <div class="row">
                         <div class="col-sm-6 col-xs-12">
@@ -117,14 +185,21 @@
                     </div>
                 </div>
             </div>
+            <div id="right-column" class="col-sm-3 nopadding">
+                <div class="inner-header">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    <span>衣物資訊</span>
+                </div>
+            </div>
         </div>
     </div>
+    <!-- script -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="//cdn.jsdelivr.net/sortable/latest/Sortable.min.js"></script>
     <script src="./index.js"></script>
-
-<!--     <script>
+    <!--     <script>
 
 
     Sortable.create(document.getElementById("tab1"), {
@@ -144,4 +219,5 @@
     });
     </script>
  -->
+
 </html>

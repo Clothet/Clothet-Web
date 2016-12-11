@@ -6,8 +6,8 @@ body {
   padding: 0;
   margin-bottom: 150px;
   height: 100%;
-  background-color: #F4F4F4; }
+  background-color: #f9f9f9; }
 
-.container {
-  padding: 0;
-  width: auto; }
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important; }
