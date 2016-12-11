@@ -4,9 +4,7 @@ html {
 html,
 body {
   padding: 0;
-  margin-bottom: 150px;
-  height: 100%;
-  background-color: #f9f9f9; }
+  margin-bottom: 150px; }
 
 .nopadding {
   padding: 0 !important;

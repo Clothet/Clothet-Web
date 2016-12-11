@@ -16,12 +16,13 @@
     .inner-header {
         background-color: #87AFC6;
     }
+    // search bar
     .search-container {
         padding: 8px 15px;
-        border-bottom:1px solid #ccc;
+        border-bottom: 1px solid #ccc;
         .stylish-input-group .input-group-addon {
             background: white !important;
-            color:#aaa;
+            color: #aaa;
         }
         .stylish-input-group .form-control {
             border-right: 0;
@@ -29,9 +30,60 @@
             border-color: #ccc;
         }
     }
+    //tab
+    .nav-tabs {
+        margin-top: 10px;
+        // width: 100%;
+        li {
+            width: 20%;
+            height: 50px;
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                height: 100%;
+                padding: 4px 10px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 8px;
+                &:focus {
+                    background-color: #fff;
+                }
+                &:active {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+    .tab-content {
+        height: 500px;
+        // margin-bottom: 100px;
+    }
+    .tab-pane {
+        // display: inner-flex;
+        // align-items: center;
+        // justify-content: center;
+        // text-align: center;
+        height: 500px;
+        overflow-y: scroll;
+    }
+    #trash-can {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        bottom: 0;
+        height: 80px;
+        width: 100%;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        // background-color:#f00;
+    }
 }
 
 #middle-column {
+    height: 100%;
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
