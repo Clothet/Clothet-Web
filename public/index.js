@@ -1,23 +1,43 @@
-var BASE_URL = 'http://exwd.csie.org:5678/'
+var BASE_URL = 'http://exwd.csie.org:5678'
 
 $(function() {
-  console.log(123)
+    console.log(123)
+
+    $.get(BASE_URL + '/api/items/search?category=外套類', function(data) {
+        for (var i in data) {
+            console.log(data);
+        }
+    });
+
+
+    var view = {
+        title: "Joe",
+        calc: function() {
+            return 2 + 4;
+        }
+    };
+
+    var output = Mustache.render("{{title}} spends {{calc}}", view);
+
+    console.log(output)
+
+
 });
 
 
 
-function changeMiddleColume(page){
+function changeMiddleColume(page) {
     var a = $("#slide-store");
     var b = $("#slide-combination");
     var c = $("#slide-bookmark");
     a.fadeOut(100);
     b.fadeOut(100);
     c.fadeOut(100);
-    if(page=='store'){
-        a.fadeIn();
-    }else if(page=='combination'){
+    if (page == 'store') {
+        a.fadeIn(100);
+    } else if (page == 'combination') {
         b.fadeIn(100);
-    }else{
+    } else {
         c.fadeIn(100);
     }
     console.log(page)
@@ -25,7 +45,39 @@ function changeMiddleColume(page){
 
 
 
+// 
+function putItemIntoTab(item) {
 
+    // determine which tab, tab6 tab7 tab8 tab9
+    var view = {
+        name:"T",
+        src: "Joe",
+        calc: function() {
+            return 2 + 4;
+        }
+    };
+
+    var output = Mustache.render(
+        "<div class='item-container'>"+
+            "<img class='item-img' src='{{src}}' tabindex='0'>"+
+             "<div class='item-text'>{{name}}</div>"+
+        "</div>"
+        , view);
+
+    console.log(output)
+
+    //append
+
+
+    $("#tab" + item.tab).append(
+        '<div onclick=onItemClick("' + item.id + '") class="item-container" data-id="' + item.id + '">' +
+        '<img class="item-img" src="' + item.img + '" tabIndex="0" />' +
+        '<div class="item-text">' + item.name + '</div>' +
+        '</div>'
+    );
+
+    // 
+}
 
 
 
@@ -33,80 +85,80 @@ function changeMiddleColume(page){
 
 
 //tab behavior
-function openTab1(evt, cityName) {
-    console.log(evt)
-        // Declare all variables
-    var i, tabcontent, tablinks;
+// function openTab1(evt, cityName) {
+//     console.log(evt)
+//         // Declare all variables
+//     var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent1");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+//     // Get all elements with class="tabcontent" and hide them
+//     tabcontent = document.getElementsByClassName("tabcontent1");
+//     for (i = 0; i < tabcontent.length; i++) {
+//         tabcontent[i].style.display = "none";
+//     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks1");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+//     // Get all elements with class="tablinks" and remove the class "active"
+//     tablinks = document.getElementsByClassName("tablinks1");
+//     for (i = 0; i < tablinks.length; i++) {
+//         tablinks[i].className = tablinks[i].className.replace(" active", "");
+//     }
 
-    // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+//     // Show the current tab, and add an "active" class to the link that opened the tab
+//     document.getElementById(cityName).style.display = "block";
+//     evt.currentTarget.className += " active";
+// }
 
-function openTab2(evt, cityName) {
-    console.log(evt)
-        // Declare all variables
-    var i, tabcontent, tablinks;
+// function openTab2(evt, cityName) {
+//     console.log(evt)
+//         // Declare all variables
+//     var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent2");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
+//     // Get all elements with class="tabcontent" and hide them
+//     tabcontent = document.getElementsByClassName("tabcontent2");
+//     for (i = 0; i < tabcontent.length; i++) {
+//         tabcontent[i].style.display = "none";
+//     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks2");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
+//     // Get all elements with class="tablinks" and remove the class "active"
+//     tablinks = document.getElementsByClassName("tablinks2");
+//     for (i = 0; i < tablinks.length; i++) {
+//         tablinks[i].className = tablinks[i].className.replace(" active", "");
+//     }
 
-    // Show the current tab, and add an "active" class to the link that opened the tab
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+//     // Show the current tab, and add an "active" class to the link that opened the tab
+//     document.getElementById(cityName).style.display = "block";
+//     evt.currentTarget.className += " active";
+// }
 ///////////////---------------------------
 
 
-function showRecommendation(id){
+function showRecommendation(id) {
     $("#recommend-panel").empty();
 
     // check all combinations
-    for(var i in recommendations){
-        if( recommendations[i].indexOf(id)> -1 ){
+    for (var i in recommendations) {
+        if (recommendations[i].indexOf(id) > -1) {
             putCombinationIntoPanel(recommendations[i]);
         }
     }
 }
 
-function putCombinationIntoPanel(mItems /*array*/){
+function putCombinationIntoPanel(mItems /*array*/ ) {
 
-    var s  = '';
-    for(var id in mItems){
+    var s = '';
+    for (var id in mItems) {
         var item = items[mItems[id]];
         s +=
-        '<div class="item-container" onclick=showDetail(\''+ item.id + '\') data-id="' + item.id + '">'+
+            '<div class="item-container" onclick=showDetail(\'' + item.id + '\') data-id="' + item.id + '">' +
             '<img class="item-img" src="' + item.img + '" tabIndex="0" />' +
             '<div class="item-text">' + item.name + '</div>' +
-        '</div>'
+            '</div>'
     }
 
     // put one combination into panel
     $("#recommend-panel").append(
-        '<div class="combination">'+
-            s+
-            '<img data-full=0 class="favorite-icon" src="./img/empty-heart.png" onclick=toggleHeart(this) />'+
+        '<div class="combination">' +
+        s +
+        '<img data-full=0 class="favorite-icon" src="./img/empty-heart.png" onclick=toggleHeart(this) />' +
         '</div>'
     );
 }
@@ -115,19 +167,11 @@ function putCombinationIntoPanel(mItems /*array*/){
 
 
 
-function putItemIntoTab(item) {
-    $("#tab" + item.tab).append(
-        '<div onclick=onItemClick("' + item.id + '") class="item-container" data-id="' + item.id + '">' +
-        '<img class="item-img" src="' + item.img + '" tabIndex="0" />' +
-        '<div class="item-text">' + item.name + '</div>' +
-        '</div>'
-    );
-}
 
 
 
 
-function onItemClick(id){
+function onItemClick(id) {
     showDetail(id);
     showRecommendation(id);
 }
@@ -145,12 +189,12 @@ function showDetail(id) {
 
 function toggleHeart(html) {
     var jHtml = $(html)
-    if($(html).attr('data-full')=="0"){
-        $(html).attr('data-full',"1");
-        $(html).attr('src','./img/full-heart.png');
-    }else{
-        $(html).attr('data-full',"0");
-        $(html).attr('src','./img/empty-heart.png');
+    if ($(html).attr('data-full') == "0") {
+        $(html).attr('data-full', "1");
+        $(html).attr('src', './img/full-heart.png');
+    } else {
+        $(html).attr('data-full', "0");
+        $(html).attr('src', './img/empty-heart.png');
     }
 }
 
@@ -440,15 +484,15 @@ var items = {
 }
 
 var recommendations = [
-    ['1','16','15','13'],
-    ['2','16','15','12'],
-    ['3','10','8','12'],
-    ['4','5','12','14'],
-    ['6','7','12','14'],
-    ['8','16','12','14'],
-    ['9','10','12','14'],
-    ['9','10','11','14'],
-    ['1','11','15','16']
+    ['1', '16', '15', '13'],
+    ['2', '16', '15', '12'],
+    ['3', '10', '8', '12'],
+    ['4', '5', '12', '14'],
+    ['6', '7', '12', '14'],
+    ['8', '16', '12', '14'],
+    ['9', '10', '12', '14'],
+    ['9', '10', '11', '14'],
+    ['1', '11', '15', '16']
 ]
 
 $(function() {
@@ -469,5 +513,3 @@ $(function() {
     }
 
 });
-
-
