@@ -90,8 +90,7 @@
                 box-shadow: 0 0 0;
                 border-color: #ccc;
                 height: 30px;
-            border-radius: 5px;
-
+                border-radius: 5px;
             }
         }
         .class-icon {
@@ -100,14 +99,44 @@
             width: 30px;
             height: 30px;
         }
-        #boy-icon {
-            background: url('http://i2.cdn.cnn.com/cnnnext/dam/assets/131009154023-female-male-abuse-story-top.jpeg') no-repeat center center;
+        #male-icon {
+            background: url('./img/style_men.png') no-repeat center center;
             background-size: cover;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             &:hover {
-                background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mars_symbol.svg/220px-Mars_symbol.svg.png') no-repeat center center;
+                background: url('./img/style_men_hover.png') no-repeat center center;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                cursor: pointer;
+            }
+        }
+        #female-icon {
+            background: url('./img/style_women.png') no-repeat center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            &:hover {
+                background: url('./img/style_women_hover.png') no-repeat center center;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                cursor: pointer;
+            }
+        }
+        #sport-icon {
+            background: url('./img/style_sport.png') no-repeat center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            &:hover {
+                background: url('./img/style_sport_hover.png') no-repeat center center;
                 background-size: cover;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
@@ -117,10 +146,72 @@
         }
     }
     #store-container {
-        height: 60px;
+        position: relative;
         .carousel-control {
             background-image: none;
             color: #888;
+        }
+        #myCarousel {
+            .glyphicon {
+                font-size: 20px;
+            }
+        }
+        .item {
+            height: 60px;
+            text-align: center;
+        }
+    }
+    // combination
+    // combination
+    // combination
+    // combination
+    // combination
+    #slide-combination {
+        width: 100%;
+        #current-item-container {
+            width: 100%;
+            height: 160px;
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .combination {
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            .no-fav {
+                width: 40px;
+                height: 40px;
+                margin-right: 30px;
+                background: url('./img/fav.png') no-repeat center center;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                &:hover {
+                    width: 40px;
+                    height: 40px;
+                    background: url('./img/fav_hover.png') no-repeat center center;
+                    background-size: cover;
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    cursor: pointer;
+                }
+            }
+            .fav {
+                margin-right: 30px;
+                width: 40px;
+                height: 40px;
+                background: url('./img/fav_hover.png') no-repeat center center;
+                background-size: cover;
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
     }
 }

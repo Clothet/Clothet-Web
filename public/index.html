@@ -10,6 +10,14 @@
     <link rel="stylesheet" type="text/css" href="header.css">
     <link rel="stylesheet" type="text/css" href="tab.css">
     <link rel="stylesheet" type="text/css" href="select.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.9/jquery.fullPage.css">
+    <!--     <style>
+    /* Prevents slides from flashing */
+    
+    #slides {
+        display: none;
+    }
+    </style> -->
 </head>
 <!-- /////////////////////////////////////////////////// -->
 
@@ -18,17 +26,17 @@
     <header>
         <a id="logo" href="/">酷衣櫥</a>
         <div id="link-container">
-            <a href="/">
+            <a onclick="changeMiddleColume('store')" href="#store">
                 <!-- <img class="icon" src="./img/Duck.jpg"> -->
                 <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                 <span>商店街</span>
             </a>
-            <a href="/">
+            <a onclick="changeMiddleColume('combination')" href="#combination">
                 <!-- <img src="./img/Duck.jpg"> -->
                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                 <span>穿搭推薦</span>
             </a>
-            <a href="/">
+            <a onclick="changeMiddleColume('bookmark')" href="#bookmark">
                 <!-- <img src="./img/Duck.jpg"> -->
                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
                 <span>我的收藏</span>
@@ -96,132 +104,180 @@
             </div>
             <!-- {/*right side colume*/} -->
             <div id="middle-column" class="col-sm-6 nopadding main-column ">
-                <div class="inner-header">
-                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                    <span>商店區</span>
-                </div>
-                <!--  -->
-                <div id="store-container">
-                    <br>
-                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox">
-                            <div class="item active">
-                                <img src="img_chania.jpg" alt="Chania" width="460" height="345">
-                            </div>
-                            <div class="item">
-                                <img src="img_chania2.jpg" alt="Chania" width="460" height="345">
-                            </div>
-                            <div class="item">
-                                <img src="img_flower.jpg" alt="Flower" width="460" height="345">
-                            </div>
-                            <div class="item">
-                                <img src="img_flower2.jpg" alt="Flower" width="460" height="345">
+                <!-- ********************************************************************************************** -->
+                <!--                 <div class="section">
+                    <div class="slide"> Slide 1 </div>
+                    <div class="slide"> Slide 2 </div>
+                    <div class="slide"> Slide 3 </div>
+                    <div class="slide"> Slide 4 </div>
+                </div> -->
+                <!-- ********************************************************************************************** -->
+                <div style="position: relative;">
+                    <div id="slide-store" style="position: absolute; display: none">
+                        <div class="inner-header">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                            <span>商店區</span>
+                        </div>
+                        <div id="store-container">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <img src="./img/logo.png">
+                                    </div>
+                                    <div class="item">
+                                        <img src="./img/logo.png">
+                                    </div>
+                                    <div class="item">
+                                        <img src="./img/logo.png">
+                                    </div>
+                                    <div class="item">
+                                        <img src="./img/logo.png">
+                                    </div>
+                                </div>
+                                <!-- Left and right controls -->
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
                         </div>
-                        <!-- Left and right controls -->
-                        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- slider end -->
-                <div id="class-container">
-                    <div>
-                        <div class="class-icon" id="boy-icon"> </div>
-                        <div class="class-icon" id="boy-icon"> </div>
-                        <div class="class-icon" id="boy-icon"> </div>
-                    </div>
-                    <div class="search-container">
-                        <div class="input-group stylish-input-group">
-                            <input type="text" class="form-control" placeholder="Search...">
+                        <div id="class-container">
+                            <div>
+                                <div class="class-icon" id="male-icon"> </div>
+                                <div class="class-icon" id="female-icon"> </div>
+                                <div class="class-icon" id="sport-icon"> </div>
+                            </div>
+                            <div class="search-container">
+                                <div class="input-group stylish-input-group">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                </div>
+                            </div>
+                            <!-- ******************** -->
                         </div>
-                    </div>
-                    <!-- ******************** -->
-                </div>
-                <!--  -->
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#tab6">T-Shrit<br>上衣</a></li>
-                    <li><a data-toggle="tab" href="#tab7">針織衣<br>襯衫</a></li>
-                    <li><a data-toggle="tab" href="#tab8">外套<br>大衣</a></li>
-                    <li><a data-toggle="tab" href="#tab9">褲子<br>裙子</a></li>
-                    <li><a data-toggle="tab" href="#tab10">其他配件</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="tab6" class="tab-pane fade in active">
-                    </div>
-                    <div id="tab7" class="tab-pane fade">
-                    </div>
-                    <div id="tab8" class="tab-pane fade">
-                    </div>
-                    <div id="tab9" class="tab-pane fade">
-                    </div>
-                    <div id="tab10" class="tab-pane fade">
-                    </div>
-                </div>
-                <!-- <div class="block">
-                    <div class="row">
-                        <div class="col-sm-6 col-xs-12">
-                            <img class="focus-item-panel" id='detail-img' src='./img/Duck.jpg' />
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div id="item-detail-panel" class="focus-item-panel">
-                                <div id="title">Disney T-shirt</div>
-                                <div id="store">store: Lativ</div>
-                                <div id="price">price: $200</div>
-                                <div id="note">note: no</div>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#tab6">T-Shrit<br>上衣</a></li>
+                            <li><a data-toggle="tab" href="#tab7">針織衣<br>襯衫</a></li>
+                            <li><a data-toggle="tab" href="#tab8">外套<br>大衣</a></li>
+                            <li><a data-toggle="tab" href="#tab9">褲子<br>裙子</a></li>
+                            <li><a data-toggle="tab" href="#tab10">其他配件</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab6" class="tab-pane fade in active">
+                            </div>
+                            <div id="tab7" class="tab-pane fade">
+                            </div>
+                            <div id="tab8" class="tab-pane fade">
+                            </div>
+                            <div id="tab9" class="tab-pane fade">
+                            </div>
+                            <div id="tab10" class="tab-pane fade">
                             </div>
                         </div>
                     </div>
+                    <!-- combination slide -->
+                    <!-- combination slide -->
+                    <!-- combination slide -->
+                    <!-- combination slide -->
+                    <!-- combination slide -->
+                    <div id="slide-combination" style="position: absolute; display: static;">
+                        <div class="inner-header">
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            <span>穿搭推薦</span>
+                        </div>
+                        <div id="current-item-container">
+                            <div class="item-container">
+                                <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
+                                <div class="item-text">口袋來貘Tee</div>
+                            </div>
+                        </div>
+                        <div style="background-color: #abb;text-align: center;padding: 15px 0;color: white;">推薦列表</div>
+                        <div class="combination">
+                            <div class="no-fav"></div>
+                            <div class="item-container">
+                                <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
+                                <div class="item-text">口袋來貘Tee</div>
+                            </div>
+                            <div class="item-container">
+                                <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
+                                <div class="item-text">口袋來貘Tee</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--  bookmark -->
+                    <!--  bookmark -->
+                    <!--  bookmark -->
+                    <!--  bookmark -->
+                    <!--  bookmark -->
+                    <div id="slide-bookmark " style="position: absolute; display: none ">
+                        sdasdsadsadsadsadsa
+                    </div>
+                    <!-- <div class="block ">
+                    <div class="row ">
+                        <div class="col-sm-6 col-xs-12 ">
+                            <img class="focus-item-panel " id='detail-img' src='./img/Duck.jpg' />
+                        </div>
+                        <div class="col-sm-6 col-xs-12 ">
+                            <div id="item-detail-panel " class="focus-item-panel ">
+                                <div id="title ">Disney T-shirt</div>
+                                <div id="store ">store: Lativ</div>
+                                <div id="price ">price: $200</div>
+                                <div id="note ">note: no</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="block">
-                    <div class="title">建議穿搭</div>
+                <div class="block ">
+                    <div class="title ">建議穿搭</div>
                     <hr></hr>
-                    <div id="recommend-panel" class="radius-border">
+                    <div id="recommend-panel " class="radius-border ">
                     </div>
                 </div> -->
+                </div>
+                <!--  -->
             </div>
-            <div id="right-column" class="col-sm-3 nopadding main-column ">
-                <div class="inner-header">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+            <div id="right-column " class="col-sm-3 nopadding main-column ">
+                <div class="inner-header ">
+                    <span class="glyphicon glyphicon-info-sign " aria-hidden="true "></span>
                     <span>衣物資訊</span>
                 </div>
-                <div id="focus-item-container">
-                    <img id="focus-item-img" src="./img/Duck.jpg">
-                    <div id="size-container">
+                <div id="focus-item-container ">
+                    <img id="focus-item-img " src="./img/Duck.jpg ">
+                    <div id="size-container ">
                         <span>M</span>
                         <span>L</span>
                         <span>XL</span>
                     </div>
-                    <div id="focus-item-title">迪士尼系列印花T</div>
-                    <div id="focus-item-note">產地：台灣
+                    <div id="focus-item-title ">迪士尼系列印花T</div>
+                    <div id="focus-item-note ">產地：台灣
                         <br>棉100%</div>
                     <hr>
-                    <div id="focus-item-price">
+                    <div id="focus-item-price ">
                         <span>NT$ 250</span>
-                        <span id="focus-item-sales">特價</span>
+                        <span id="focus-item-sales ">特價</span>
                     </div>
-                    <button id="focus-item-buy-btn" type="button" class="btn btn-default">前往購買</button>
+                    <button id="focus-item-buy-btn " type="button " class="btn btn-default ">前往購買</button>
                     <hr>
-                    <div id="focus-item-sample-container">
-                        <img class="focus-item-sample-img" src="./img/Duck.jpg">
-                        <img class="focus-item-sample-img" src="./img/Duck.jpg">
+                    <div id="focus-item-sample-container ">
+                        <img class="focus-item-sample-img " src="./img/Duck.jpg ">
+                        <img class="focus-item-sample-img " src="./img/Duck.jpg ">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- script -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/sortable/latest/Sortable.min.js"></script>
-    <script src="./index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js "></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js "></script>
+    <script src="//cdn.jsdelivr.net/sortable/latest/Sortable.min.js "></script>
+    <script src="./index.js "></script>
     <script>
     $('.carousel').carousel({
         interval: false
@@ -236,17 +292,17 @@
     <!--     <script>
 
 
-    Sortable.create(document.getElementById("tab1"), {
+    Sortable.create(document.getElementById("tab1 "), {
         animation: 150, // ms, animation speed moving items when sorting, `0` — 
-        group: "omega",
+        group: "omega ",
         onUpdate: function(evt /**Event*/ ) {
             var item = evt.item; // the current dragged HTMLElement
         }
     });
 
-    Sortable.create(document.getElementById("tab6"), {
+    Sortable.create(document.getElementById("tab6 "), {
         animation: 150, // ms, animation speed moving items when sorting, `0` — 
-        group: "omega",
+        group: "omega ",
         onUpdate: function(evt /**Event*/ ) {
             var item = evt.item; // the current dragged HTMLElement
         }

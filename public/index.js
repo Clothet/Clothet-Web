@@ -1,3 +1,29 @@
+function changeMiddleColume(page){
+    var a = $("#slide-store");
+    var b = $("#slide-combination");
+    var c = $("#slide-bookmark");
+    a.fadeOut();
+    b.fadeOut();
+    c.fadeOut();
+    if(page=='store'){
+        a.fadeIn();
+    }else if(page=='combination'){
+        b.fadeIn();
+    }else{
+        c.fadeIn();
+    }
+    console.log(page)
+}
+
+
+
+
+
+
+
+
+
+
 //tab behavior
 function openTab1(evt, cityName) {
     console.log(evt)
