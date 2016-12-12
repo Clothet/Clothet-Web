@@ -36,6 +36,19 @@
     #left-column #trash-can:hover {
       background-color: red; }
 
+/*
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+
+*/
 #middle-column {
   height: 100%;
   border-top: 1px solid #ccc;
@@ -44,10 +57,25 @@
   #middle-column .inner-header {
     background-color: #8CB6CF; }
   #middle-column #class-container {
+    position: relative;
     height: 40px;
     line-height: 40px;
-    background: #bbb;
+    background: #9DABAA;
     text-align: center; }
+    #middle-column #class-container .search-container {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 160px; }
+      #middle-column #class-container .search-container .stylish-input-group .input-group-addon {
+        background: white !important;
+        color: #aaa; }
+      #middle-column #class-container .search-container .stylish-input-group .form-control {
+        border-right: 0;
+        box-shadow: 0 0 0;
+        border-color: #ccc;
+        height: 30px;
+        border-radius: 5px; }
     #middle-column #class-container .class-icon {
       display: inline-block;
       margin: 5px 10px;
@@ -72,16 +100,85 @@
       background-image: none;
       color: #888; }
 
+/*
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+*/
 #right-column {
   border-top: 1px solid #ccc; }
   #right-column .inner-header {
     background-color: #A5C6DD; }
+  #right-column #focus-item-container {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px; }
+    #right-column #focus-item-container #focus-item-img {
+      margin-top: 25px;
+      max-width: 70%;
+      border: 1px solid #ccc;
+      padding: 12px 10px; }
+    #right-column #focus-item-container #size-container {
+      text-align: center; }
+      #right-column #focus-item-container #size-container span {
+        display: inline-block;
+        color: #555;
+        background-color: #ccc;
+        width: 40px;
+        height: 25px;
+        line-height: 25px;
+        margin: 12px 4px; }
+    #right-column #focus-item-container #focus-item-title {
+      font-weight: bold;
+      font-size: 18px;
+      color: black; }
+    #right-column #focus-item-container #focus-item-note {
+      margin-top: 12px;
+      margin-bottom: 24px;
+      font-size: 12px; }
+    #right-column #focus-item-container #focus-item-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 14px;
+      font-weight: bold;
+      font-size: 26px; }
+      #right-column #focus-item-container #focus-item-price #focus-item-sales {
+        right: 100px;
+        background-color: #e66;
+        color: white;
+        font-weight: normal;
+        font-size: 12px;
+        width: 40px;
+        height: 20px;
+        line-height: 20px;
+        margin-left: 20px; }
+    #right-column #focus-item-container #focus-item-buy-btn {
+      margin-top: 18px;
+      padding: 5px 60px;
+      background-color: #9BBAC0;
+      color: white; }
+      #right-column #focus-item-container #focus-item-buy-btn:hover {
+        background-color: #80B0B0; }
+    #right-column #focus-item-container #focus-item-sample-container {
+      text-align: center; }
+      #right-column #focus-item-container #focus-item-sample-container .focus-item-sample-img {
+        max-width: 40%;
+        margin: 10px; }
 
 hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid #999;
+  border-top: 1px solid #ccc;
   margin: 8px 0;
   padding: 0; }
 

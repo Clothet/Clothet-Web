@@ -46,6 +46,21 @@
     }
 }
 
+
+/*
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+* middle
+
+*/
+
 #middle-column {
     height: 100%;
     border-top: 1px solid #ccc;
@@ -55,10 +70,30 @@
         background-color: #8CB6CF;
     }
     #class-container {
+        position: relative;
         height: 40px;
         line-height: 40px;
-        background: #bbb;
+        background: #9DABAA;
         text-align: center;
+        .search-container {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 160px;
+            // padding: 8px 15px;
+            .stylish-input-group .input-group-addon {
+                background: white !important;
+                color: #aaa;
+            }
+            .stylish-input-group .form-control {
+                border-right: 0;
+                box-shadow: 0 0 0;
+                border-color: #ccc;
+                height: 30px;
+            border-radius: 5px;
+
+            }
+        }
         .class-icon {
             display: inline-block;
             margin: 5px 10px;
@@ -90,22 +125,102 @@
     }
 }
 
+
+/*
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+* right
+*/
+
 #right-column {
     border-top: 1px solid #ccc;
     .inner-header {
         background-color: #A5C6DD;
     }
-}
-
-.inner-container {
-    // padding: 0 10px 0 10px;
+    #focus-item-container {
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+        #focus-item-img {
+            margin-top: 25px;
+            max-width: 70%;
+            border: 1px solid #ccc;
+            padding: 12px 10px;
+        }
+        #size-container {
+            text-align: center;
+            span {
+                display: inline-block;
+                color: #555;
+                background-color: #ccc;
+                width: 40px;
+                height: 25px;
+                line-height: 25px;
+                margin: 12px 4px;
+            }
+        }
+        #focus-item-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: black;
+        }
+        #focus-item-note {
+            margin-top: 12px;
+            margin-bottom: 24px;
+            font-size: 12px;
+        }
+        #focus-item-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 14px;
+            font-weight: bold;
+            font-size: 26px;
+            #focus-item-sales {
+                // position: absolute;
+                right: 100px;
+                background-color: #e66;
+                color: white;
+                font-weight: normal;
+                font-size: 12px;
+                width: 40px;
+                height: 20px;
+                line-height: 20px;
+                margin-left: 20px;
+            }
+        }
+        #focus-item-buy-btn {
+            margin-top: 18px;
+            padding: 5px 60px;
+            background-color: #9BBAC0;
+            color: white;
+            &:hover {
+                background-color: #80B0B0;
+            }
+        }
+        #focus-item-sample-container {
+            text-align: center;
+            .focus-item-sample-img {
+                max-width: 40%;
+                margin: 10px;
+            }
+        }
+    }
 }
 
 hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #999;
+    border-top: 1px solid #ccc;
     margin: 8px 0;
     padding: 0;
 }
