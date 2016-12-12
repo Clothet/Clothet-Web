@@ -1,16 +1,24 @@
+var BASE_URL = 'http://exwd.csie.org:5678/'
+
+$(function() {
+  console.log(123)
+});
+
+
+
 function changeMiddleColume(page){
     var a = $("#slide-store");
     var b = $("#slide-combination");
     var c = $("#slide-bookmark");
-    a.fadeOut();
-    b.fadeOut();
-    c.fadeOut();
+    a.fadeOut(100);
+    b.fadeOut(100);
+    c.fadeOut(100);
     if(page=='store'){
         a.fadeIn();
     }else if(page=='combination'){
-        b.fadeIn();
+        b.fadeIn(100);
     }else{
-        c.fadeIn();
+        c.fadeIn(100);
     }
     console.log(page)
 }
@@ -133,7 +141,6 @@ function showDetail(id) {
     $('#price').html(item.price);
     $('#note').html(item.note);
 }
-
 
 
 function toggleHeart(html) {
