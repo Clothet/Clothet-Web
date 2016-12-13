@@ -3,15 +3,7 @@ var BASE_URL = 'http://exwd.csie.org:5678'
 $(function() {
 
     initializeTabSortable();
-    //detect tab
 
-    //default data
-    // $.get(BASE_URL + '/api/items/search?category=T恤%26POLO', function(data) {
-    //     for (var i in data) {
-    //         // console.log(data[i]);
-    //         putItemIntoTab(data[i]);
-    //     }
-    // });
     getTabData(6);
 
     bindEvent();
@@ -21,9 +13,9 @@ $(function() {
 
 function bindEvent() {
     //
-    $(".store-tabs>.tab-indicator").on("click", function(event) {
-        console.log(event);
-    });
+    // $(".store-tabs>.tab-indicator").on("click", function(event) {
+    //     // console.log(event);
+    // });
 
     $('#search-self-item').keyup(function(event) {
         if (event.keyCode == 13) {
@@ -36,7 +28,7 @@ function bindEvent() {
             $('#tab11').empty();
             $.get(BASE_URL + '/api/items/search?name=' + $('#search-store-item').val(), function(data) {
                 for (var i in data) {
-                    putItemIntoTab(data[i], 11);
+                    putItemIntoTab(data[i], 'search_store');
                 }
             });
 
@@ -66,8 +58,8 @@ function initializeTabSortable() {
                 originalEvent.clientY; // mouse position
                 // return false; — for cancel
                 // console.log($(evt.to).get(0).id)
-                
-                if($(evt.to).get(0).id=='trash-can'){
+
+                if ($(evt.to).get(0).id == 'trash-can') {
                     console.log('haha')
                 }
             },
@@ -119,10 +111,25 @@ function getTabData(tabNum) {
         default:
             break;
     }
-    $.get(BASE_URL + '/api/items/search?category=' + category, function(data) {
-        for (var i in data) {
-            // console.log(data[i]);
-            putItemIntoTab(data[i]);
+    $.get(BASE_URL + '/api/items/search?category=' + category, function(data_raw) {
+        for (var i in data_raw) {
+
+            // console.log(data[i])
+            $.get(BASE_URL + '/api/items/' + data_raw[i].serial_no, function(data) {
+                // console.log(data)
+
+                for (var i in data.styles) {
+
+                    var category = data_raw[i].category;
+                    var name = data_raw[i].name;
+                    // console.log(data.styles[i]);
+                    putItemIntoTab(data.styles[i],category);
+
+
+                }
+            });
+
+
         }
     });
 }
@@ -149,26 +156,26 @@ function changeMiddleColume(page) {
 
 
 // 
-function putItemIntoTab(item, assignedTab) {
+function putItemIntoTab(item, category,name) {
     // console.log(item)
     var images = (item.image).split(",");
 
     // determine which tab, tab6 tab7 tab8 tab9
     var view = {
-        serial_no: item.serial_no,
-        name: item.name,
+        id: item.id,
+        name: name,
         src: images[0]
     };
 
     var output = Mustache.render(
-        "<div onclick='onItemClick({{serial_no}})' class='item-container'>" +
-        "<img class='item-img' src='{{{src}}}'>" +
+        "<div onclick='onItemClick({{id}})' class='item-container'>" +
+        "<img class='item-img' src='http://www.lativ.com.tw/{{{src}}}'>" +
         "<div class='item-text'>{{name}}</div>" +
         "</div>", view);
 
     //to which tag
     var tab;
-    switch (item.category) {
+    switch (category) {
         case 'T恤&POLO':
             tab = 6
             break;
@@ -185,14 +192,19 @@ function putItemIntoTab(item, assignedTab) {
             break;
         case '家居服&配件':
             tab = 10
+            break;
+        case 'search_store':
+            tab = 11;
+            break;
+        case 'search_self':
+            tab = 0;
+            break;
         default:
-            tab = 10
+            tab = 11
+            break;
     }
 
 
-    if (assignedTab) {
-        tab = assignedTab;
-    }
     $("#tab" + tab).append(output);
 
 }
@@ -233,31 +245,54 @@ function onItemClick(id) {
 }
 
 function showRecommendation(id) {
-    // $("#recommend-panel").empty();
 
-    // // check all combinations
-    // for (var i in recommendations) {
-    //     if (recommendations[i].indexOf(id) > -1) {
-    //         putCombinationIntoPanel(recommendations[i]);
-    //     }
-    // }
+    console.log(BASE_URL + '/api/item_combinations/search?item_id=' + id)
+
+    $.get(BASE_URL + '/api/item_combinations/search?item_id=' + id, function(combinations) {
+        console.log(combinations)
+
+        for (var i in combinations) {
+            console.log(combinations[i])
+        }
+
+
+
+        // console.log(item)
+        // var images = (item.image).split(",");
+        // $('#focus-item-img').attr("src", images[0]);
+        // $('#focus-item-sample-container').empty();
+        // for (var i = 1; i < images.length; i++) {
+        //     $('#focus-item-sample-container').append(
+        //         '<img class="focus-item-sample-img" src="' + images[i] + '">'
+        //     )
+        // }
+        // $('#focus-item-sample-container')
+        // $('#focus-item-title').html(item.name);
+        // $('#focus-item-price>span:first-child').html("NT$ " + item.price);
+        // $('#focus-item-buy-btn').click(function(event) {
+        //     window.open('http://www.lativ.com.tw/')
+        // });
+
+    });
+
 }
 
 function showDetail(id) {
+    var lativ_URL = 'http://www.lativ.com.tw/';
 
-    $.get(BASE_URL + '/api/items/' + id, function(item) {
+    $.get(BASE_URL + '/api/items/details/' + id, function(item) {
         console.log(item)
         var images = (item.image).split(",");
-        $('#focus-item-img').attr("src", images[0]);
+        $('#focus-item-img').attr("src", lativ_URL+item.image);
         $('#focus-item-sample-container').empty();
-        for (var i = 1; i < images.length; i++) {
-            $('#focus-item-sample-container').append(
-                '<img class="focus-item-sample-img" src="' + images[i] + '">'
-            )
-        }
+        // for (var i = 1; i < images.length; i++) {
+        //     $('#focus-item-sample-container').append(
+        //         '<img class="focus-item-sample-img" src="' + images[i] + '">'
+        //     )
+        // }
         $('#focus-item-sample-container')
-        $('#focus-item-title').html(item.name);
-        $('#focus-item-price>span:first-child').html("NT$ " + item.price);
+        $('#focus-item-title').html(item.item.name);
+        $('#focus-item-price>span:first-child').html("NT$ " + item.item.price);
         $('#focus-item-buy-btn').click(function(event) {
             window.open('http://www.lativ.com.tw/')
         });
