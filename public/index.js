@@ -26,11 +26,24 @@ function bindEvent() {
     });
 
     $('#search-store-item').keyup(function(event) {
+
         if (event.keyCode == 13) {
             $('#tab11').empty();
             $.get(BASE_URL + '/api/items/search?name=' + $('#search-store-item').val(), function(data) {
                 for (var i in data) {
-                    putItemIntoTab(data[i], 'search_store');
+                    // console.log(data[i])
+                    $.get(BASE_URL + '/api/items/' + data[i].serial_no, function(data) {
+                        // console.log(data)
+
+                        for (var i in data.styles) {
+
+                            var name = data.name;
+                            putItemIntoTab(data.styles[i], 'search_store', name);
+
+
+                        }
+                    });
+
                 }
             });
 
@@ -113,6 +126,7 @@ function getTabData(tabNum) {
         default:
             break;
     }
+    $('#tab'+tabNum).empty();
     $.get(BASE_URL + '/api/items/search?category=' + category, function(data_raw) {
         for (var i in data_raw) {
 
@@ -214,7 +228,7 @@ function putItemIntoTab(item, category, name) {
 
 function putCombinationIntoPanel(mItems /*array*/ ) {
     var random = Math.floor(Math.random() * 100000);
-    var s ='<div id="comb' + random + '" class="combination"><div class="no-fav"></div></div>'
+    var s = '<div id="comb' + random + '" class="combination"><div class="no-fav"></div></div>'
     $('#combination-panel').append(s);
     //console.log(mItems);
     for (var i in mItems) {
@@ -228,7 +242,7 @@ function putCombinationIntoPanel(mItems /*array*/ ) {
                 src: item.image
             };
             var output = Mustache.render(template_factory(2), view);
-            $('#comb'+random).append(output);
+            $('#comb' + random).append(output);
 
 
         });
