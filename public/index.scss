@@ -178,9 +178,13 @@
             align-items: center;
             padding-left: 30px;
             border-bottom: 1px solid #ccc;
+            overflow-x: scroll;
             .no-fav {
                 width: 40px;
+                min-width: 40px;
                 height: 40px;
+                min-height: 40px;
+
                 margin-right: 30px;
                 background: url('./img/fav.png') no-repeat center center;
                 background-size: cover;

@@ -11,13 +11,6 @@
     <link rel="stylesheet" type="text/css" href="tab.css">
     <link rel="stylesheet" type="text/css" href="select.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.9/jquery.fullPage.css">
-    <!--     <style>
-    /* Prevents slides from flashing */
-    
-    #slides {
-        display: none;
-    }
-    </style> -->
 </head>
 <!-- /////////////////////////////////////////////////// -->
 
@@ -200,15 +193,17 @@
                             </div>
                         </div>
                         <div style="background-color: #abb;text-align: center;padding: 15px 0;color: white;">推薦列表</div>
-                        <div class="combination">
-                            <div class="no-fav"></div>
-                            <div class="item-container">
-                                <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
-                                <div class="item-text">口袋來貘Tee</div>
-                            </div>
-                            <div class="item-container">
-                                <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
-                                <div class="item-text">口袋來貘Tee</div>
+                        <div id="combination-panel">
+                            <div class="combination">
+                                <div class="no-fav"></div>
+                                <div class="item-container">
+                                    <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
+                                    <div class="item-text">口袋來貘Tee</div>
+                                </div>
+                                <div class="item-container">
+                                    <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
+                                    <div class="item-text">口袋來貘Tee</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -305,6 +300,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <script src="./js/html_template.js "></script>
     <script src="./index.js "></script>
     <script>
     $('.carousel').carousel({

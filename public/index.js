@@ -1,4 +1,6 @@
 var BASE_URL = 'http://exwd.csie.org:5678'
+var lativ_URL = 'http://www.lativ.com.tw/';
+
 
 $(function() {
 
@@ -121,9 +123,10 @@ function getTabData(tabNum) {
                 for (var i in data.styles) {
 
                     var category = data_raw[i].category;
-                    var name = data_raw[i].name;
+                    var name = data.name;
+                    // console.log(data_raw[i])
                     // console.log(data.styles[i]);
-                    putItemIntoTab(data.styles[i],category);
+                    putItemIntoTab(data.styles[i], category, name);
 
 
                 }
@@ -150,13 +153,12 @@ function changeMiddleColume(page) {
     } else {
         c.fadeIn(200);
     }
-    console.log(page)
 }
 
 
 
 // 
-function putItemIntoTab(item, category,name) {
+function putItemIntoTab(item, category, name) {
     // console.log(item)
     var images = (item.image).split(",");
 
@@ -167,11 +169,7 @@ function putItemIntoTab(item, category,name) {
         src: images[0]
     };
 
-    var output = Mustache.render(
-        "<div onclick='onItemClick({{id}})' class='item-container'>" +
-        "<img class='item-img' src='http://www.lativ.com.tw/{{{src}}}'>" +
-        "<div class='item-text'>{{name}}</div>" +
-        "</div>", view);
+    var output = Mustache.render(template_factory(1), view);
 
     //to which tag
     var tab;
@@ -215,24 +213,28 @@ function putItemIntoTab(item, category,name) {
 
 
 function putCombinationIntoPanel(mItems /*array*/ ) {
+    var random = Math.floor(Math.random() * 100000);
+    var s ='<div id="comb' + random + '" class="combination"><div class="no-fav"></div></div>'
+    $('#combination-panel').append(s);
+    //console.log(mItems);
+    for (var i in mItems) {
 
-    var s = '';
-    for (var id in mItems) {
-        var item = items[mItems[id]];
-        s +=
-            '<div class="item-container" onclick=showDetail(\'' + item.id + '\') data-id="' + item.id + '">' +
-            '<img class="item-img" src="' + item.img + '" />' +
-            '<div class="item-text">' + item.name + '</div>' +
-            '</div>'
+
+        $.get(BASE_URL + '/api/items/details/' + mItems[i].id, function(item) {
+            console.log(item);
+            var view = {
+                id: item.id,
+                name: item.item.name,
+                src: item.image
+            };
+            var output = Mustache.render(template_factory(2), view);
+            $('#comb'+random).append(output);
+
+
+        });
+
     }
 
-    // put one combination into panel
-    $("#recommend-panel").append(
-        '<div class="combination">' +
-        s +
-        '<img data-full=0 class="favorite-icon" src="./img/empty-heart.png" onclick=toggleHeart(this) />' +
-        '</div>'
-    );
 }
 
 // -------------------------------------------
@@ -240,19 +242,22 @@ function putCombinationIntoPanel(mItems /*array*/ ) {
 
 
 function onItemClick(id) {
+    $('#combination-panel').empty();
     showDetail(id);
     showRecommendation(id);
 }
 
 function showRecommendation(id) {
 
-    console.log(BASE_URL + '/api/item_combinations/search?item_id=' + id)
+
+    // console.log(BASE_URL + '/api/item_combinations/search?item_id=' + id)
 
     $.get(BASE_URL + '/api/item_combinations/search?item_id=' + id, function(combinations) {
-        console.log(combinations)
+        // console.log(combinations)
 
         for (var i in combinations) {
-            console.log(combinations[i])
+            var items = combinations[i].details;
+            putCombinationIntoPanel(items)
         }
 
 
@@ -278,12 +283,12 @@ function showRecommendation(id) {
 }
 
 function showDetail(id) {
-    var lativ_URL = 'http://www.lativ.com.tw/';
 
     $.get(BASE_URL + '/api/items/details/' + id, function(item) {
-        console.log(item)
+        // console.log(item)
+        //
         var images = (item.image).split(",");
-        $('#focus-item-img').attr("src", lativ_URL+item.image);
+        $('#focus-item-img').attr("src", lativ_URL + item.image);
         $('#focus-item-sample-container').empty();
         // for (var i = 1; i < images.length; i++) {
         //     $('#focus-item-sample-container').append(
@@ -296,6 +301,11 @@ function showDetail(id) {
         $('#focus-item-buy-btn').click(function(event) {
             window.open('http://www.lativ.com.tw/')
         });
+
+        // 
+        $('#current-item-container .item-img').attr("src", lativ_URL + item.image);
+        $('#current-item-container .item-text').html(item.item.name);
+
 
     });
 
