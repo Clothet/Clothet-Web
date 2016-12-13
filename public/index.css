@@ -277,7 +277,7 @@
     #right-column #focus-item-container #focus-item-sample-container {
       text-align: center; }
       #right-column #focus-item-container #focus-item-sample-container .focus-item-sample-img {
-        max-width: 40%;
+        width: 90%;
         margin: 10px; }
 
 hr {
@@ -306,7 +306,8 @@ hr {
     width: 100%;
     border: 1px solid #aaa;
     min-width: 100%; }
-    .item-container .item-img:focus {
+    .item-container .item-img:hover {
+      cursor: pointer;
       outline: 2px solid deepskyblue; }
   .item-container .item-text {
     width: 100%;

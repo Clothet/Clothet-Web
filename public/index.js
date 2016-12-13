@@ -1,28 +1,118 @@
 var BASE_URL = 'http://exwd.csie.org:5678'
 
 $(function() {
-    console.log(123)
 
-    $.get(BASE_URL + '/api/items/search?category=外套類', function(data) {
+    initializeTabSortable();
+    //detect tab
+
+    //default data
+    $.get(BASE_URL + '/api/items/search?category=褲裝', function(data) {
         for (var i in data) {
-            console.log(data);
+            // console.log(data[i]);
+            putItemIntoTab(data[i]);
         }
     });
 
-
-    var view = {
-        title: "Joe",
-        calc: function() {
-            return 2 + 4;
-        }
-    };
-
-    var output = Mustache.render("{{title}} spends {{calc}}", view);
-
-    console.log(output)
+    bindEvent();
 
 
 });
+
+function bindEvent() {
+    //
+    $(".store-tabs>.tab-indicator").on("click", function(event) {
+        console.log(event);
+    });
+
+    $('#search-self-item').keyup(function(event) {
+        if (event.keyCode == 13) {
+            console.log(111)
+        }
+    });
+
+    $('#search-store-item').keyup(function(event) {
+        if (event.keyCode == 13) {
+            $('#tab11').empty();
+            $.get(BASE_URL + '/api/items/search?name=' + $('#search-store-item').val(), function(data) {
+                for (var i in data) {
+                    putItemIntoTab(data[i], 11);
+                }
+            });
+
+            $('#middle-column .tab-pane.active.in').removeClass('active in')
+            $('#middle-column .tab-indicator.active').removeClass('active')
+            $('#tab11').addClass('active in')
+
+        }
+    });
+
+    // $('.item-container').on("click", function(event) {
+    //     console.log(event);
+    // });
+
+
+}
+
+function initializeTabSortable() {
+    for (var i = 0; i <= 11; i++) {
+        Sortable.create(document.getElementById("tab" + i), {
+            animation: 150, // ms, animation speed moving items when sorting, `0` — 
+            group: "omega"
+            // onUpdate: function(evt /**Event*/ ) {
+            //     var item = evt.item; // the current dragged HTMLElement
+            //     console.log(item)
+            // }
+        });
+    }
+    Sortable.create(document.getElementById("trash-can"), {
+        animation: 150, // ms, animation speed moving items when sorting, `0` — 
+        group: "omega"
+        // onUpdate: function(evt /**Event*/ ) {
+        //     var item = evt.item; // the current dragged HTMLElement
+        //     console.log(evt)
+        // },
+        // onEnd: function( *Event evt) {
+        //     console.log(evt)
+
+        //     evt.oldIndex; // element's old index within parent
+        //     evt.newIndex; // element's new index within parent
+        // },
+    });
+}
+
+function getTabData(tabNum) {
+    var category = '';
+    switch (tabNum) {
+        case 6:
+
+            break;
+
+        case 7:
+
+            break;
+
+        case 8:
+
+            break;
+
+        case 9:
+
+            break;
+
+        case 10:
+
+            break;
+
+        default:
+            break;
+    }
+    $.get(BASE_URL + '/api/items/search?category=' + category, function(data) {
+        for (var i in data) {
+            // console.log(data[i]);
+            putItemIntoTab(data[i]);
+        }
+    });
+}
 
 
 
@@ -30,15 +120,15 @@ function changeMiddleColume(page) {
     var a = $("#slide-store");
     var b = $("#slide-combination");
     var c = $("#slide-bookmark");
-    a.fadeOut(100);
-    b.fadeOut(100);
-    c.fadeOut(100);
+    a.fadeOut(200);
+    b.fadeOut(200);
+    c.fadeOut(200);
     if (page == 'store') {
-        a.fadeIn(100);
+        a.fadeIn(200);
     } else if (page == 'combination') {
-        b.fadeIn(100);
+        b.fadeIn(200);
     } else {
-        c.fadeIn(100);
+        c.fadeIn(200);
     }
     console.log(page)
 }
@@ -46,100 +136,53 @@ function changeMiddleColume(page) {
 
 
 // 
-function putItemIntoTab(item) {
+function putItemIntoTab(item, assignedTab) {
+    // console.log(item)
+    var images = (item.image).split(",");
 
     // determine which tab, tab6 tab7 tab8 tab9
     var view = {
-        name:"T",
-        src: "Joe",
-        calc: function() {
-            return 2 + 4;
-        }
+        serial_no: item.serial_no,
+        name: item.name,
+        src: images[0]
     };
 
     var output = Mustache.render(
-        "<div class='item-container'>"+
-            "<img class='item-img' src='{{src}}' tabindex='0'>"+
-             "<div class='item-text'>{{name}}</div>"+
-        "</div>"
-        , view);
+        "<div onclick='onItemClick({{serial_no}})' class='item-container'>" +
+        "<img class='item-img' src='{{{src}}}'>" +
+        "<div class='item-text'>{{name}}</div>" +
+        "</div>", view);
 
-    console.log(output)
+    //to which tag
+    var tab;
+    switch (item.category) {
+        case '褲裝':
+        case '裙裝':
+            tab = 9
+            break;
+        default:
+            tab = 10
+    }
+    if (assignedTab) {
+        tab = assignedTab;
+    }
+    console.log(tab)
+    $("#tab" + tab).append(output);
 
-    //append
-
-
-    $("#tab" + item.tab).append(
-        '<div onclick=onItemClick("' + item.id + '") class="item-container" data-id="' + item.id + '">' +
-        '<img class="item-img" src="' + item.img + '" tabIndex="0" />' +
-        '<div class="item-text">' + item.name + '</div>' +
-        '</div>'
-    );
-
-    // 
 }
 
 
 
 
-
-
-//tab behavior
-// function openTab1(evt, cityName) {
-//     console.log(evt)
-//         // Declare all variables
-//     var i, tabcontent, tablinks;
-
-//     // Get all elements with class="tabcontent" and hide them
-//     tabcontent = document.getElementsByClassName("tabcontent1");
-//     for (i = 0; i < tabcontent.length; i++) {
-//         tabcontent[i].style.display = "none";
-//     }
-
-//     // Get all elements with class="tablinks" and remove the class "active"
-//     tablinks = document.getElementsByClassName("tablinks1");
-//     for (i = 0; i < tablinks.length; i++) {
-//         tablinks[i].className = tablinks[i].className.replace(" active", "");
-//     }
-
-//     // Show the current tab, and add an "active" class to the link that opened the tab
-//     document.getElementById(cityName).style.display = "block";
-//     evt.currentTarget.className += " active";
-// }
-
-// function openTab2(evt, cityName) {
-//     console.log(evt)
-//         // Declare all variables
-//     var i, tabcontent, tablinks;
-
-//     // Get all elements with class="tabcontent" and hide them
-//     tabcontent = document.getElementsByClassName("tabcontent2");
-//     for (i = 0; i < tabcontent.length; i++) {
-//         tabcontent[i].style.display = "none";
-//     }
-
-//     // Get all elements with class="tablinks" and remove the class "active"
-//     tablinks = document.getElementsByClassName("tablinks2");
-//     for (i = 0; i < tablinks.length; i++) {
-//         tablinks[i].className = tablinks[i].className.replace(" active", "");
-//     }
-
-//     // Show the current tab, and add an "active" class to the link that opened the tab
-//     document.getElementById(cityName).style.display = "block";
-//     evt.currentTarget.className += " active";
-// }
-///////////////---------------------------
-
-
 function showRecommendation(id) {
-    $("#recommend-panel").empty();
+    // $("#recommend-panel").empty();
 
-    // check all combinations
-    for (var i in recommendations) {
-        if (recommendations[i].indexOf(id) > -1) {
-            putCombinationIntoPanel(recommendations[i]);
-        }
-    }
+    // // check all combinations
+    // for (var i in recommendations) {
+    //     if (recommendations[i].indexOf(id) > -1) {
+    //         putCombinationIntoPanel(recommendations[i]);
+    //     }
+    // }
 }
 
 function putCombinationIntoPanel(mItems /*array*/ ) {
@@ -149,7 +192,7 @@ function putCombinationIntoPanel(mItems /*array*/ ) {
         var item = items[mItems[id]];
         s +=
             '<div class="item-container" onclick=showDetail(\'' + item.id + '\') data-id="' + item.id + '">' +
-            '<img class="item-img" src="' + item.img + '" tabIndex="0" />' +
+            '<img class="item-img" src="' + item.img + '" />' +
             '<div class="item-text">' + item.name + '</div>' +
             '</div>'
     }
@@ -167,23 +210,37 @@ function putCombinationIntoPanel(mItems /*array*/ ) {
 
 
 
-
-
-
-
 function onItemClick(id) {
     showDetail(id);
-    showRecommendation(id);
+    // showRecommendation(id);
+    // initializeTabSortable();
 }
 
 function showDetail(id) {
-    var item = items[id];
-    console.log(id)
-    $('#detail-img').attr("src", item.img);
-    $('#title').html(item.name);
-    $('#store').html(item.store);
-    $('#price').html(item.price);
-    $('#note').html(item.note);
+
+    $.get(BASE_URL + '/api/items/' + id, function(item) {
+        console.log(item)
+        var images = (item.image).split(",");
+        $('#focus-item-img').attr("src", images[0]);
+        $('#focus-item-sample-container').empty();
+        for (var i = 1; i < images.length; i++) {
+            $('#focus-item-sample-container').append(
+                '<img class="focus-item-sample-img" src="' + images[i] + '">'
+            )
+        }
+        $('#focus-item-sample-container')
+        $('#focus-item-title').html(item.name);
+        $('#focus-item-price>span:first-child').html("NT$ " + item.price);
+        $('#focus-item-buy-btn').click(function(event) {
+            window.open('http://www.lativ.com.tw/')
+        });
+
+    });
+
+
+    // $('#store').html(item.store);
+    // $('#price').html(item.price);
+    // $('#note').html(item.note);
 }
 
 
@@ -200,289 +257,6 @@ function toggleHeart(html) {
 
 
 
-var items = {
-    '1': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1asdas': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1asdsa': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1aaa': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1asdsada': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1asdas': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1asd': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1asda': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1sadas': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1123123': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '112321312': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '123211': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '11231': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '1111': {
-        id: '1',
-        name: '口袋來貘Tee',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2870801_220.jpg',
-        tab: 1
-    },
-    '2': {
-        id: '2',
-        name: '奧樂星GTee',
-        store: 'Lativ',
-        price: '$199',
-        note: 'onSale',
-        img: './img/2604401_220.jpg',
-        tab: 1
-    },
-    '3': {
-        id: '3',
-        name: '布魯克林大橋Tee',
-        store: 'Lativ',
-        price: '$199',
-        note: 'onSale',
-        img: './img/2602301_220.jpg',
-        tab: 1
-    },
-    '4': {
-        id: '4',
-        name: '尋找天堂拉克蘭T',
-        store: 'Lativ',
-        price: '$249',
-        note: 'onSale',
-        img: './img/2585101_500.jpg',
-        tab: 1
-    },
-    '5': {
-        id: '5',
-        name: '法蘭絨格紋襯衫',
-        store: 'Lativ',
-        price: '$332',
-        note: 'onSale',
-        img: './img/2837119_220.jpg',
-        tab: 2
-    },
-    '6': {
-        id: '6',
-        name: '法蘭絨印花襯衫',
-        store: 'Lativ',
-        price: '$399',
-        note: 'onSale',
-        img: './img/2837202_500.jpg',
-        tab: 2
-    },
-    '7': {
-        id: '7',
-        name: '棉質針織外套',
-        store: 'Lativ',
-        price: '$399',
-        note: 'onSale',
-        img: './img/2621204_220.jpg',
-        tab: 2
-    },
-    '8': {
-        id: '8',
-        name: 'Fleece連帽外套',
-        store: 'Lativ',
-        price: '$417',
-        note: 'onSale',
-        img: './img/2800401_220.jpg',
-        tab: 3
-    },
-    '9': {
-        id: '9',
-        name: 'Fleece立領外套',
-        store: 'Lativ',
-        price: '$332',
-        note: 'onSale',
-        img: './img/2800212_220.jpg',
-        tab: 3
-    },
-    '10': {
-        id: '10',
-        name: '極暖立領羽絨背心',
-        store: 'Lativ',
-        price: '$1097',
-        note: 'onSale',
-        img: './img/2812703_220.jpg',
-        tab: 3
-    },
-    '11': {
-        id: '11',
-        name: '特彈 Slim Fit 窄管牛仔褲',
-        store: 'Lativ',
-        price: '$690',
-        note: '',
-        img: './img/2834401_220.jpg',
-        tab: 4
-    },
-    '12': {
-        id: '12',
-        name: 'Slim Fit 多色牛仔褲',
-        store: 'Lativ',
-        price: '$587',
-        note: '',
-        img: './img/2834308_220.jpg',
-        tab: 4
-    },
-    '13': {
-        id: '13',
-        name: '經典直筒牛仔褲',
-        store: 'Lativ',
-        price: '$490',
-        note: '',
-        img: './img/2510102_220.jpg',
-        tab: 4
-    },
-    '14': {
-        id: '14',
-        name: '純棉高統帆布休閒鞋',
-        store: 'Lativ',
-        price: '$339',
-        note: '',
-        img: './img/2038006_220.jpg',
-        tab: 5
-    },
-    '15': {
-        id: '15',
-        name: '純棉經典帆布休閒鞋',
-        store: 'Lativ',
-        price: '$350',
-        note: '',
-        img: './img/1646804_220.jpg',
-        tab: 5
-    },
-    '16': {
-        id: '16',
-        name: '針織圍巾',
-        store: 'Lativ',
-        price: '$332',
-        note: '',
-        img: './img/2842402_220.jpg',
-        tab: 5
-    },
-
-}
-
 var recommendations = [
     ['1', '16', '15', '13'],
     ['2', '16', '15', '12'],
@@ -494,22 +268,3 @@ var recommendations = [
     ['9', '10', '11', '14'],
     ['1', '11', '15', '16']
 ]
-
-$(function() {
-    //initialize put all the items into tab content
-    for (var i in items) {
-        putItemIntoTab(items[i]);
-    }
-
-    //make  items in tabs sortable and dragable
-    for (var i = 1; i <= 10; i++) {
-        Sortable.create(document.getElementById("tab" + i), {
-            animation: 150, // ms, animation speed moving items when sorting, `0` — 
-            group: "omega",
-            onUpdate: function(evt /**Event*/ ) {
-                var item = evt.item; // the current dragged HTMLElement
-            }
-        });
-    }
-
-});

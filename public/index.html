@@ -69,7 +69,7 @@
                 <!-- ******************** -->
                 <div class="search-container">
                     <div class="input-group stylish-input-group">
-                        <input type="text" class="form-control" placeholder="Search clothes...">
+                        <input id="search-self-item" type="text" class="form-control" placeholder="Search clothes...">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-search"></span>
                         </span>
@@ -77,14 +77,16 @@
                 </div>
                 <!-- ******************** -->
                 <div class="">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab1">T-Shrit<br>上衣</a></li>
-                        <li><a data-toggle="tab" href="#tab2">針織衣<br>襯衫</a></li>
-                        <li><a data-toggle="tab" href="#tab3">外套<br>大衣</a></li>
-                        <li><a data-toggle="tab" href="#tab4">褲子<br>裙子</a></li>
-                        <li><a data-toggle="tab" href="#tab5">其他配件</a></li>
+                    <ul class="nav nav-tabs personal-tabs">
+                        <li class="tab-indicator active"><a data-toggle="tab" href="#tab1">T-Shrit<br>上衣</a></li>
+                        <li class="tab-indicator"><a data-toggle="tab" href="#tab2">針織衣<br>襯衫</a></li>
+                        <li class="tab-indicator"><a data-toggle="tab" href="#tab3">外套<br>大衣</a></li>
+                        <li class="tab-indicator"><a data-toggle="tab" href="#tab4">褲子<br>裙子</a></li>
+                        <li class="tab-indicator"><a data-toggle="tab" href="#tab5">其他配件</a></li>
                     </ul>
                     <div class="tab-content">
+                        <div id="tab0" class="tab-pane fade in active">
+                        </div>
                         <div id="tab1" class="tab-pane fade in active">
                         </div>
                         <div id="tab2" class="tab-pane fade">
@@ -113,7 +115,7 @@
                 </div> -->
                 <!-- ********************************************************************************************** -->
                 <div style="position: relative;">
-                    <div id="slide-store" style="position: absolute; display: none">
+                    <div id="slide-store" style="position: absolute;">
                         <div class="inner-header">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                             <span>商店區</span>
@@ -154,17 +156,17 @@
                             </div>
                             <div class="search-container">
                                 <div class="input-group stylish-input-group">
-                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <input id="search-store-item" type="text" class="form-control" placeholder="Search...">
                                 </div>
                             </div>
                             <!-- ******************** -->
                         </div>
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#tab6">T-Shrit<br>上衣</a></li>
-                            <li><a data-toggle="tab" href="#tab7">針織衣<br>襯衫</a></li>
-                            <li><a data-toggle="tab" href="#tab8">外套<br>大衣</a></li>
-                            <li><a data-toggle="tab" href="#tab9">褲子<br>裙子</a></li>
-                            <li><a data-toggle="tab" href="#tab10">其他配件</a></li>
+                        <ul class="nav nav-tabs store-tabs">
+                            <li class="tab-indicator active"><a data-toggle="tab" href="#tab6">T-Shrit<br>上衣</a></li>
+                            <li class="tab-indicator"><a data-toggle="tab" href="#tab7">針織衣<br>襯衫</a></li>
+                            <li class="tab-indicator"><a data-toggle="tab" href="#tab8">外套<br>大衣</a></li>
+                            <li class="tab-indicator"><a data-toggle="tab" href="#tab9">褲子<br>裙子</a></li>
+                            <li class="tab-indicator"><a data-toggle="tab" href="#tab10">其他配件</a></li>
                         </ul>
                         <div class="tab-content">
                             <div id="tab6" class="tab-pane fade in active">
@@ -177,6 +179,8 @@
                             </div>
                             <div id="tab10" class="tab-pane fade">
                             </div>
+                            <div id="tab11" class="tab-pane fade">
+                            </div>
                         </div>
                     </div>
                     <!-- combination slide -->
@@ -184,7 +188,7 @@
                     <!-- combination slide -->
                     <!-- combination slide -->
                     <!-- combination slide -->
-                    <div id="slide-combination" style="position: absolute; display: static;">
+                    <div id="slide-combination" style="position: absolute; display: none;">
                         <div class="inner-header">
                             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                             <span>穿搭推薦</span>
@@ -282,8 +286,8 @@
                         <br>棉100%</div>
                     <hr>
                     <div id="focus-item-price">
-                        <span>NT$ 250</span>
-                        <span id="focus-item-sales">特價</span>
+                        <span>NT$250</span>
+                        <!-- <span id="focus-item-sales">特價</span> -->
                     </div>
                     <button id="focus-item-buy-btn" type="button" class="btn btn-default ">前往購買</button>
                     <hr>
@@ -299,9 +303,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//cdn.jsdelivr.net/sortable/latest/Sortable.min.js"></script>
+    <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
-
     <script src="./index.js "></script>
     <script>
     $('.carousel').carousel({
@@ -314,25 +317,5 @@
         console.log(event.relatedTarget)
     })
     </script>
-    <!--     <script>
-
-
-    Sortable.create(document.getElementById("tab1 "), {
-        animation: 150, // ms, animation speed moving items when sorting, `0` — 
-        group: "omega ",
-        onUpdate: function(evt /**Event*/ ) {
-            var item = evt.item; // the current dragged HTMLElement
-        }
-    });
-
-    Sortable.create(document.getElementById("tab6 "), {
-        animation: 150, // ms, animation speed moving items when sorting, `0` — 
-        group: "omega ",
-        onUpdate: function(evt /**Event*/ ) {
-            var item = evt.item; // the current dragged HTMLElement
-        }
-    });
-    </script>
- -->
 
 </html>
