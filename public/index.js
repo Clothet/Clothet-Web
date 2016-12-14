@@ -1,6 +1,8 @@
 var BASE_URL = 'http://exwd.csie.org:5678'
 var lativ_URL = 'http://www.lativ.com.tw/';
 
+var trash_num = 0;
+
 
 $(function() {
 
@@ -78,6 +80,16 @@ function initializeTabSortable() {
                     console.log('haha')
                 }
             },
+            onAdd: function( /**Event*/ evt) {
+                var addedTab = $(evt.to)[0].id;
+                if (addedTab.substr(3) < 6) {
+                    var item = ($(evt.item).children('img')[0])
+                    console.log(item)
+                        // var saved_item = localStorage.getItem('saved_items');
+                        // localStorage.setItem('saved_item',save)
+
+                }
+            }
         });
     }
     new Sortable(document.getElementById("trash-can"), {
@@ -85,6 +97,15 @@ function initializeTabSortable() {
         group: "omega",
         onAdd: function( /**Event*/ evt) {
             console.log('add')
+            $('#trash-can').empty();
+            trash_num++;
+            if (trash_num % 5 == 0) {
+                console.log(123)
+                $('#gif').show();
+                setTimeout(function() {
+                    $('#gif').hide();
+                }, 3000);
+            }
         },
 
         onEnd: function( /**Event*/ evt) {
@@ -126,7 +147,7 @@ function getTabData(tabNum) {
         default:
             break;
     }
-    $('#tab'+tabNum).empty();
+    $('#tab' + tabNum).empty();
     $.get(BASE_URL + '/api/items/search?category=' + category, function(data_raw) {
         for (var i in data_raw) {
 

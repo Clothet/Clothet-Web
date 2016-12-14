@@ -30,8 +30,17 @@
     bottom: 0;
     left: 0;
     position: fixed;
+    height: 50px;
+    width: 50px;
     margin-left: 10px;
-    margin-bottom: 10px; }
+    margin-bottom: 100px;
+    background: url("./img/remove.png") no-repeat center center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover; }
+    #left-column #trash-can:hover {
+      background-color: red; }
 
 /*
 * middle
@@ -140,7 +149,7 @@
       align-items: center;
       padding-left: 30px;
       border-bottom: 1px solid #ccc;
-      overflow-x: scroll; }
+      overflow-x: auto; }
       #middle-column #slide-combination .combination .no-fav {
         width: 40px;
         min-width: 40px;

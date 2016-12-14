@@ -17,7 +17,7 @@
     left: 300px;
     /* This makes things *much* easier
     /* box-sizing: border-box; */
-    border: 2px solid rgba(0,0,0,0);
+    border: 2px solid rgba(0, 0, 0, 0);
 }
 
 .resize-drag:hover {
@@ -33,22 +33,15 @@
 <body>
     <div class="resize-container">
         <h1 style="text-align: center; font-weight: 900 !important;">試衣間</h1>
-
-        <img  height="500px" src="./img/people.PNG">
-
+        <marquee style="font-size: 24px;font-weight: bold;" direction="right" height="30" scrollamount="5" behavior="alternate">歡迎來到試衣間</marquee>
+        <img height="500px" src="./img/people.PNG">
         <img width="150px" class="resize-drag" id="shirt" src="./img/sample-shirt.png" data-border="0" />
         <img width="150px" class="resize-drag" id="shirt" src="./img/sample-pants.png" data-border="0" />
-
         <img width="200px" class="resize-drag" id="shirt" src="./img/sample-skirt.png" data-border="0" />
         <img width="150px" class="resize-drag" id="shirt" src="./img/sample-pants.png" data-border="0" />
         <img width="70px" class="resize-drag" id="shirt" src="./img/sample-hat.png" data-border="0" />
-        
-        <div  style="z-index: -999; background-size: 100% 100%;position: absolute;right:0; top:0;width: 300px; height:500px;background-image: url('./img/closet.jpeg');background-repeat: no-repeat;"></div>
-
-
-
+        <div style="z-index: -999; background-size: 100% 100%;position: absolute;right:0; top:0;width: 300px; height:500px;background-image: url('./img/closet.jpeg');background-repeat: no-repeat;"></div>
     </div>
-
 </body>
 <script src="http://code.interactjs.io/v1.2.6/interact.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -58,14 +51,14 @@ $('.resize-drag').click(function(event) {
     ++z;
 
     $(this).css({
-        'z-index':z
+        'z-index': z
     });
 });
 
 interact('.resize-drag')
     .draggable({
         onmove: window.dragMoveListener,
-        
+
     })
     .resizable({
         preserveAspectRatio: true,

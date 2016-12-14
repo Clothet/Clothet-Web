@@ -15,7 +15,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 8px; }
+      font-size: 1vmin; }
       .nav-tabs li a:focus {
         background-color: #fff; }
       .nav-tabs li a:active {
