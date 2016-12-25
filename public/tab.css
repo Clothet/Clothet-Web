@@ -1,10 +1,10 @@
-.nav-tabs {
+#left-column .nav-tabs, #middle-column .nav-tabs {
   margin-top: 3px; }
-  .nav-tabs li {
+  #left-column .nav-tabs li, #middle-column .nav-tabs li {
     width: 20%;
     height: 50px;
     background-color: #eee; }
-    .nav-tabs li a {
+    #left-column .nav-tabs li a, #middle-column .nav-tabs li a {
       color: #999;
       display: flex;
       align-items: center;
@@ -16,14 +16,14 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       font-size: 14px; }
-      .nav-tabs li a:focus {
+      #left-column .nav-tabs li a:focus, #middle-column .nav-tabs li a:focus {
         background-color: #fff; }
-      .nav-tabs li a:active {
+      #left-column .nav-tabs li a:active, #middle-column .nav-tabs li a:active {
         background-color: #fff; }
 
-.tab-content {
+#left-column .tab-content, #middle-column .tab-content {
   height: 100vh; }
 
-.tab-pane {
+#left-column .tab-pane, #middle-column .tab-pane {
   height: 100%;
   overflow-y: scroll; }

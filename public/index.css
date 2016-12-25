@@ -64,13 +64,13 @@
     background-color: #8CB6CF; }
   #middle-column #class-container {
     position: relative;
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 80px;
     background: #9DABAA;
     text-align: center; }
     #middle-column #class-container .search-container {
       position: absolute;
-      top: 5px;
+      top: 10px;
       right: 5px;
       width: 160px; }
       #middle-column #class-container .search-container .stylish-input-group .input-group-addon {

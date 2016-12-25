@@ -37,3 +37,5 @@ header {
     margin-right: 20px; }
     header #user:hover {
       cursor: pointer; }
+  header .dropdown-toggle {
+    -webkit-appearance: none; }

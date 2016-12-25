@@ -6,6 +6,7 @@ var trash_num = 0;
 
 $(function() {
 
+    checkStatus();
     initializeTabSortable();
 
     getTabData(6);
@@ -14,6 +15,17 @@ $(function() {
 
 
 });
+
+function checkStatus() {
+    
+    console.log(document.cookie)
+
+    $.get(BASE_URL + '/api/members/status/', function(status) {
+        console.log(status);
+    }).fail(function(e) {
+        console.log(e);
+    });
+}
 
 function bindEvent() {
     //
@@ -237,7 +249,7 @@ function putItemIntoTab(item, category, name) {
             break;
     }
 
-
+    console.log(tab);
     $("#tab" + tab).append(output);
 
 }
@@ -361,17 +373,3 @@ function toggleHeart(html) {
         $(html).attr('src', './img/empty-heart.png');
     }
 }
-
-
-
-var recommendations = [
-    ['1', '16', '15', '13'],
-    ['2', '16', '15', '12'],
-    ['3', '10', '8', '12'],
-    ['4', '5', '12', '14'],
-    ['6', '7', '12', '14'],
-    ['8', '16', '12', '14'],
-    ['9', '10', '12', '14'],
-    ['9', '10', '11', '14'],
-    ['1', '11', '15', '16']
-]
