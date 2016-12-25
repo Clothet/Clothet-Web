@@ -17,14 +17,25 @@ $(function() {
 });
 
 function checkStatus() {
-    
+
     console.log(document.cookie)
 
-    $.get(BASE_URL + '/api/members/status/', function(status) {
-        console.log(status);
-    }).fail(function(e) {
-        console.log(e);
-    });
+
+    $.ajax({
+        url: BASE_URL + '/api/members/status/',
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true,
+        success: function(status){
+            console.log(status);
+        },
+        error:function(e){
+            console.log(e);
+        }
+    })
+
+
 }
 
 function bindEvent() {
