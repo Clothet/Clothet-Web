@@ -93,10 +93,7 @@ function login() {
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        xhrFields: {
-            withCredentials: true
-        },
-        crossDomain: true,
+        
         success: function(result) {
             if (result['isLogin'] == true) {
                 $('#login-panel').fadeOut(600);
