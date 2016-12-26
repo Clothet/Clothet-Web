@@ -23,6 +23,9 @@ function checkStatus() {
 
     $.ajax({
         url: BASE_URL + '/api/members/status/',
+        xhrFields: {
+            withCredentials: true
+        },
 
         success: function(status){
             console.log(status);
