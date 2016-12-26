@@ -91,10 +91,13 @@ function login() {
             'username': email,
             'password': password
         }),
+        xhrFields: {
+            withCredentials: true
+        },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         
-        success: function(result) {
+        success: function(result, status, req) {
             if (result['isLogin'] == true) {
                 $('#login-panel').fadeOut(600);
                 $('#alert-success-text').html('登入成功')
