@@ -18,24 +18,52 @@ $(function() {
 
 function checkStatus() {
 
-    console.log(document.cookie)
-
-
     $.ajax({
         url: BASE_URL + '/api/members/status/',
         xhrFields: {
             withCredentials: true
         },
 
-        success: function(status){
-            console.log(status);
+        success: function(status) {
+            if (status.isLogin == true) {
+                startLogin(status.user)
+            }
         },
-        error:function(e){
+        error: function(e) {
             console.log(e);
         }
     })
+}
 
+function startLogin(user) {
+    console.log(user)
+    $('#user-name').html(user.name)
+    changeToUserHeader();
+    getAddedEquipment();
+}
 
+function getAddedEquipment() {
+
+    $.ajax({
+        type: 'GET',
+        url: BASE_URL + '/api/equipments',
+        xhrFields: {
+            withCredentials: true
+        },
+
+        success: function(data) {
+            for (var i in data) {
+                if (data[i] != null) {
+                    console.log(data[i]);
+                    putItemIntoMyTab(data[i], data[i].item.category, data[i].item.name);
+
+                }
+            }
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    })
 }
 
 function bindEvent() {
@@ -104,13 +132,15 @@ function initializeTabSortable() {
                 }
             },
             onAdd: function( /**Event*/ evt) {
+                // add equipment
                 var addedTab = $(evt.to)[0].id;
                 if (addedTab.substr(3) < 6) {
-                    var item = ($(evt.item).children('img')[0])
-                    console.log(item)
-                        // var saved_item = localStorage.getItem('saved_items');
-                        // localStorage.setItem('saved_item',save)
+                    addEquipment($($(evt.item)[0]).attr('data-item_id'));
+                }
 
+                //remove equipment
+                if (addedTab.substr(3) > 5) {
+                    removeEquipment($($(evt.item)[0]).attr('data-item_id'));
                 }
             }
         });
@@ -140,6 +170,45 @@ function initializeTabSortable() {
 
     });
 }
+
+function addEquipment(item_id) {
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL + '/api/equipments/' + item_id,
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(result) {
+            showAlert('新增成功')
+        },
+        error: function(e) {
+            showAlert('新增失敗')
+        }
+    });
+
+}
+
+function removeEquipment(item_id) {
+    $.ajax({
+        type: 'DELETE',
+        url: BASE_URL + '/api/equipments/' + item_id,
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(result) {
+            showAlert('移除成功')
+        },
+        error: function(e) {
+            showAlert('移除失敗')
+        }
+    });
+
+}
+
 
 function getTabData(tabNum) {
     var category = '';
@@ -248,6 +317,55 @@ function putItemIntoTab(item, category, name) {
             break;
         case '家居服&配件':
             tab = 10
+            break;
+        case 'search_store':
+            tab = 11;
+            break;
+        case 'search_self':
+            tab = 0;
+            break;
+        default:
+            tab = 11
+            break;
+    }
+
+    console.log(tab);
+    $("#tab" + tab).append(output);
+
+}
+
+function putItemIntoMyTab(item, category, name) {
+    // console.log(item)
+    var images = (item.image).split(",");
+
+    // determine which tab, tab6 tab7 tab8 tab9
+    var view = {
+        id: item.id,
+        name: name,
+        src: images[0]
+    };
+
+    var output = Mustache.render(template_factory(1), view);
+    console.log(output)
+    //to which tag
+    var tab;
+    switch (category) {
+        case 'T恤&POLO':
+            tab = 1
+            break;
+        case '襯衫':
+            tab = 2
+            break;
+        case '外套類':
+            tab = 3
+            break;
+        case '褲裝&裙裝':
+        case '褲裝':
+        case '裙裝':
+            tab = 4
+            break;
+        case '家居服&配件':
+            tab = 5
             break;
         case 'search_store':
             tab = 11;

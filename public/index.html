@@ -22,12 +22,18 @@
 <body>
     <!-- alert -->
     <div id="alert-success" style="display: none" class="alert alert-success">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+       
         <strong id="alert-success-text">Success!</strong>
     </div>
     <div id="alert-fail" style="display: none" class="alert alert-danger">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  
         <strong id="alert-fail-text">Fail!</strong>
+    </div>
+
+    <div id="alert-hint-container" style="display: none">
+        <div id="alert-hint-text" >
+            asdasdasd
+        </div>
     </div>
     <!-- alert end -->
     <div style="display: none;" id="login-panel" class="form">
@@ -143,6 +149,7 @@
                     <span class="caret"></span>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a onclick="logout();"  href="javascript:void(0)">登出</a></li>
                     <li><a href="./test.html">...</a></li>
                 </ul>
             </div>
@@ -177,7 +184,7 @@
                         <li class="tab-indicator"><a data-toggle="tab" href="#tab5">其他配件</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div id="tab0" class="tab-pane fade in active">
+                        <div id="tab0" class="tab-pane fade">
                         </div>
                         <div id="tab1" class="tab-pane fade in active">
                         </div>

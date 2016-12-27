@@ -1,7 +1,7 @@
 function template_factory(name) {
 
     var item_container =
-        "<div onclick='onItemClick({{id}})' class='item-container'>" +
+        "<div data-item_id={{id}} onclick='onItemClick({{id}})' class='item-container'>" +
         "<img class='item-img' src='http://www.lativ.com.tw/{{{src}}}'>" +
         "<div class='item-text'>{{name}}</div>" +
         "</div>";

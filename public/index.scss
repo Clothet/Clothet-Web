@@ -47,8 +47,7 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         &:hover {
-        background-color: red;
-
+            background-color: red;
         }
     }
 }
@@ -459,3 +458,38 @@ hr {
 //     justify-content: space-around;
 //     margin: 16px 0;
 // }
+.dropdown-menu>,
+.dropdown-menu> {
+    li:hover {}
+    li>a {
+        // width: 100%;
+    }
+    li>a:focus {
+        background-color: #bff
+    }
+    li>a:hover {
+        background-color: #bff
+    }
+}
+
+#alert-hint-container {
+    z-index: 1000;
+    position: fixed;
+    right: 10px;
+    bottom: 16px;
+    height: 130px;
+    width: 250px;
+    border-radius: 7px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #888888;
+    #alert-hint-text {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items:center;
+        justify-content:center;
+        font-size: 30px;
+        color:#595;
+        font-weight:bold;
+    }
+}

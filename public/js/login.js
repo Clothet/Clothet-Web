@@ -96,7 +96,7 @@ function login() {
         },
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        
+
         success: function(result, status, req) {
             if (result['isLogin'] == true) {
                 $('#login-panel').fadeOut(600);
@@ -106,7 +106,8 @@ function login() {
 
                 console.log(result['user'])
                 $('#user-name').html(result['user']['name']);
-                changeToUserHeader();
+
+                checkStatus();
 
 
 
@@ -124,6 +125,30 @@ function login() {
     });
 
     return false;
+}
+
+function logout() {
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL + '/api/members/logout',
+        xhrFields: {
+            withCredentials: true
+        },
+
+        success: function(status) {
+            $('#alert-success-text').html('登出成功')
+            $('#alert-success').show();
+            $('#alert-success').fadeOut(6000);
+            changeToGuestHeader();
+        },
+        error: function(e) {
+            $('#alert-success-text').html('登出成功')
+            $('#alert-success').show();
+            $('#alert-success').fadeOut(6000);
+            changeToGuestHeader();
+
+        }
+    })
 }
 
 function changeToUserHeader() {
@@ -144,3 +169,12 @@ function showLoginPanel() {
 function hideLoginPanel() {
     $('#login-panel').fadeOut(300);
 }
+
+
+function showAlert(text) {
+    $('#alert-hint-container').stop(true, true);
+    $('#alert-hint-text').html(text)
+    $('#alert-hint-container').show();
+    $('#alert-hint-container').fadeOut(3000);
+}
+
