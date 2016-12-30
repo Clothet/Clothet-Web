@@ -10,7 +10,7 @@ $(function() {
     initializeTabSortable();
 
     getTabData(6);
-
+    showMyRecommendation();
     bindEvent();
 
 
@@ -107,6 +107,18 @@ function bindEvent() {
         }
     });
 
+    // $('#combination-panel').on('click', '.no-fav', function(event) {
+    //     $(this).addClass('fav');
+    //     $(this).removeClass('no-fav');
+    //     // $(this).prop("onclick",null);
+    // });
+    // $('#combination-panel').on('click', '.fav', function(event) {
+    //     $(this).addClass('no-fav');
+    //     $(this).removeClass('fav');
+    //     // $(this).prop("onclick",null);
+
+    // });
+
 
 
 }
@@ -171,10 +183,30 @@ function initializeTabSortable() {
     });
 }
 
-function addEquipment(item_id) {
+function addEquipment(combination_id) {
     $.ajax({
         type: 'POST',
-        url: BASE_URL + '/api/equipments/' + item_id,
+        url: BASE_URL + '/api/favorites/' + combination_id,
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(result) {
+            showAlert('加入成功<3')
+        },
+        error: function(e) {
+            showAlert('加入失敗')
+        }
+    });
+
+}
+
+function addCombination(comb_id) {
+
+    $.ajax({
+        type: 'POST',
+        url: BASE_URL + '/api/equipments/' + comb_id,
         contentType: "application/json; charset=utf-8",
         dataType: "text",
         xhrFields: {
@@ -188,7 +220,14 @@ function addEquipment(item_id) {
         }
     });
 
+    $("#comb" + comb_id + " .no-fav").addClass('fav');
+    $("#comb" + comb_id + " .no-fav").removeClass('no-fav');
+    $("#comb" + comb_id + " .fav").attr("onclick", "removeCombination(" + comb_id + ")");
+
+
 }
+
+
 
 function removeEquipment(item_id) {
     $.ajax({
@@ -206,6 +245,33 @@ function removeEquipment(item_id) {
             showAlert('移除失敗')
         }
     });
+
+}
+
+function removeCombination(comb_id) {
+
+    $.ajax({
+        type: 'DELETE',
+        url: BASE_URL + '/api/equipments/' + comb_id,
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(result) {
+            showAlert('移除成功')
+        },
+        error: function(e) {
+            showAlert('移除失敗')
+        }
+    });
+
+
+    $("#comb" + comb_id + " .fav").addClass('no-fav');
+    $("#comb" + comb_id + " .fav").removeClass('fav');
+    $("#comb" + comb_id + " .no-fav").attr("onclick", "addCombination(" + comb_id + ")");
+
+
 
 }
 
@@ -347,7 +413,7 @@ function putItemIntoMyTab(item, category, name) {
 
     var output = Mustache.render(template_factory(1), view);
     console.log(output)
-    //to which tag
+        //to which tag
     var tab;
     switch (category) {
         case 'T恤&POLO':
@@ -388,23 +454,52 @@ function putItemIntoMyTab(item, category, name) {
 
 
 
-function putCombinationIntoPanel(mItems /*array*/ ) {
-    var random = Math.floor(Math.random() * 100000);
-    var s = '<div id="comb' + random + '" class="combination"><div class="no-fav"></div></div>'
+function putCombinationIntoPanel(mItems /*array*/ , combination_id) {
+
+    var s = '<div id="comb' + combination_id + '" data-combination_id=' + combination_id + ' class="combination"><div onClick=addCombination(' + combination_id + ') class="no-fav"></div></div>'
     $('#combination-panel').append(s);
+
     //console.log(mItems);
     for (var i in mItems) {
 
 
         $.get(BASE_URL + '/api/items/details/' + mItems[i].id, function(item) {
-            console.log(item);
+            // console.log(item);
             var view = {
                 id: item.id,
                 name: item.item.name,
                 src: item.image
             };
             var output = Mustache.render(template_factory(2), view);
-            $('#comb' + random).append(output);
+            $('#comb' + combination_id).append(output);
+
+
+        });
+
+    }
+
+}
+
+
+
+function putCombinationIntoMyPanel(mItems /*array*/ , combination_id) {
+
+    var s = '<div id="comb' + combination_id + '" data-combination_id=' + combination_id + ' class="combination"><div onClick=addCombination(' + combination_id + ') class="no-fav"></div></div>'
+    $('#slide-bookmark').append(s);
+
+    //console.log(mItems);
+    for (var i in mItems) {
+
+
+        $.get(BASE_URL + '/api/items/details/' + mItems[i].id, function(item) {
+            // console.log(item);
+            var view = {
+                id: item.id,
+                name: item.item.name,
+                src: item.image
+            };
+            var output = Mustache.render(template_factory(2), view);
+            $('#comb' + combination_id).append(output);
 
 
         });
@@ -425,36 +520,41 @@ function onItemClick(id) {
 
 function showRecommendation(id) {
 
-
-    // console.log(BASE_URL + '/api/item_combinations/search?item_id=' + id)
-
     $.get(BASE_URL + '/api/item_combinations/search?item_id=' + id, function(combinations) {
         // console.log(combinations)
+        console.log(combinations)
 
         for (var i in combinations) {
             var items = combinations[i].details;
-            putCombinationIntoPanel(items)
+            var combination_id = combinations[i].combination_id;
+            putCombinationIntoPanel(items, combination_id)
         }
 
-
-
-        // console.log(item)
-        // var images = (item.image).split(",");
-        // $('#focus-item-img').attr("src", images[0]);
-        // $('#focus-item-sample-container').empty();
-        // for (var i = 1; i < images.length; i++) {
-        //     $('#focus-item-sample-container').append(
-        //         '<img class="focus-item-sample-img" src="' + images[i] + '">'
-        //     )
-        // }
-        // $('#focus-item-sample-container')
-        // $('#focus-item-title').html(item.name);
-        // $('#focus-item-price>span:first-child').html("NT$ " + item.price);
-        // $('#focus-item-buy-btn').click(function(event) {
-        //     window.open('http://www.lativ.com.tw/')
-        // });
-
     });
+
+}
+
+function showMyRecommendation() {
+
+    $.ajax({
+        url: BASE_URL + '/api/favorites',
+        xhrFields: {
+            withCredentials: true
+        },
+
+        success: function(combinations) {
+            console.log(combinations)
+
+            for (var i in combinations) {
+                var items = combinations[i].details;
+                var combination_id = combinations[i].combination_id;
+                putCombinationIntoMyPanel(items, combination_id)
+            }
+        },
+        error: function(e) {
+            console.log(e);
+        }
+    })
 
 }
 
@@ -486,19 +586,4 @@ function showDetail(id) {
     });
 
 
-    // $('#store').html(item.store);
-    // $('#price').html(item.price);
-    // $('#note').html(item.note);
-}
-
-
-function toggleHeart(html) {
-    var jHtml = $(html)
-    if ($(html).attr('data-full') == "0") {
-        $(html).attr('data-full', "1");
-        $(html).attr('src', './img/full-heart.png');
-    } else {
-        $(html).attr('data-full', "0");
-        $(html).attr('src', './img/empty-heart.png');
-    }
 }

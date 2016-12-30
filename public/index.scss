@@ -199,13 +199,7 @@
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 &:hover {
-                    width: 40px;
-                    height: 40px;
-                    background: url('./img/fav_hover.png') no-repeat center center;
-                    background-size: cover;
-                    -webkit-background-size: cover;
-                    -moz-background-size: cover;
-                    -o-background-size: cover;
+                    
                     cursor: pointer;
                 }
             }
@@ -219,7 +213,9 @@
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 &:hover {
+                    
                     cursor: pointer;
+ 
                 }
             }
         }

@@ -162,13 +162,6 @@
         -moz-background-size: cover;
         -o-background-size: cover; }
         #middle-column #slide-combination .combination .no-fav:hover {
-          width: 40px;
-          height: 40px;
-          background: url("./img/fav_hover.png") no-repeat center center;
-          background-size: cover;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
           cursor: pointer; }
       #middle-column #slide-combination .combination .fav {
         margin-right: 30px;
