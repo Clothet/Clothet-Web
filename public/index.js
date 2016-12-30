@@ -206,7 +206,7 @@ function addCombination(comb_id) {
 
     $.ajax({
         type: 'POST',
-        url: BASE_URL + '/api/equipments/' + comb_id,
+        url: BASE_URL + '/api/favorites/' + comb_id,
         contentType: "application/json; charset=utf-8",
         dataType: "text",
         xhrFields: {
@@ -214,6 +214,8 @@ function addCombination(comb_id) {
         },
         success: function(result) {
             showAlert('新增成功')
+            showMyRecommendation();
+
         },
         error: function(e) {
             showAlert('新增失敗')
@@ -252,7 +254,7 @@ function removeCombination(comb_id) {
 
     $.ajax({
         type: 'DELETE',
-        url: BASE_URL + '/api/equipments/' + comb_id,
+        url: BASE_URL + '/api/favorites/' + comb_id,
         contentType: "application/json; charset=utf-8",
         dataType: "text",
         xhrFields: {
@@ -471,7 +473,7 @@ function putCombinationIntoPanel(mItems /*array*/ , combination_id) {
                 src: item.image
             };
             var output = Mustache.render(template_factory(2), view);
-            $('#comb' + combination_id).append(output);
+            $('#slide-combination #comb' + combination_id).append(output);
 
 
         });
@@ -484,8 +486,8 @@ function putCombinationIntoPanel(mItems /*array*/ , combination_id) {
 
 function putCombinationIntoMyPanel(mItems /*array*/ , combination_id) {
 
-    var s = '<div id="comb' + combination_id + '" data-combination_id=' + combination_id + ' class="combination"><div onClick=addCombination(' + combination_id + ') class="no-fav"></div></div>'
-    $('#slide-bookmark').append(s);
+    var s = '<div id="comb' + combination_id + '" data-combination_id=' + combination_id + ' class="combination"><div onClick=removeCombination(' + combination_id + ') class="fav"></div></div>'
+    $('#my-bookmark').append(s);
 
     //console.log(mItems);
     for (var i in mItems) {
@@ -499,7 +501,7 @@ function putCombinationIntoMyPanel(mItems /*array*/ , combination_id) {
                 src: item.image
             };
             var output = Mustache.render(template_factory(2), view);
-            $('#comb' + combination_id).append(output);
+            $('#my-bookmark #comb' + combination_id).append(output);
 
 
         });
@@ -543,6 +545,7 @@ function showMyRecommendation() {
         },
 
         success: function(combinations) {
+            $('#my-bookmark').empty();
             console.log(combinations)
 
             for (var i in combinations) {

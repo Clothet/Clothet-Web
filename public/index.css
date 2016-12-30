@@ -183,7 +183,9 @@
       border-bottom: 1px solid #ccc; }
       #middle-column #slide-bookmark .combination .no-fav {
         width: 40px;
+        min-width: 40px;
         height: 40px;
+        min-height: 40px;
         margin-right: 30px;
         background: url("./img/fav.png") no-repeat center center;
         background-size: cover;
@@ -191,13 +193,6 @@
         -moz-background-size: cover;
         -o-background-size: cover; }
         #middle-column #slide-bookmark .combination .no-fav:hover {
-          width: 40px;
-          height: 40px;
-          background: url("./img/fav_hover.png") no-repeat center center;
-          background-size: cover;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
           cursor: pointer; }
       #middle-column #slide-bookmark .combination .fav {
         margin-right: 30px;
