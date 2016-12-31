@@ -23,3 +23,6 @@ body {
 
 .main-column {
   height: 100%; }
+
+.container-fluid {
+  margin: 0px; }

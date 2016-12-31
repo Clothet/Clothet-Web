@@ -72,6 +72,13 @@ function bindEvent() {
     //     // console.log(event);
     // });
 
+    $("body").on("mouseover", ".item-img", function() {
+        console.log('good');
+    });
+    $("body").on("mouseleave", ".item-img", function() {
+        console.log('good');
+    });
+
     $('#search-self-item').keyup(function(event) {
         if (event.keyCode == 13) {
             console.log(111)
@@ -186,14 +193,14 @@ function initializeTabSortable() {
 function addEquipment(combination_id) {
     $.ajax({
         type: 'POST',
-        url: BASE_URL + '/api/favorites/' + combination_id,
+        url: BASE_URL + '/api/equipments/' + combination_id,
         contentType: "application/json; charset=utf-8",
         dataType: "text",
         xhrFields: {
             withCredentials: true
         },
         success: function(result) {
-            showAlert('加入成功<3')
+            showAlert('加入成功')
         },
         error: function(e) {
             showAlert('加入失敗')
@@ -397,7 +404,7 @@ function putItemIntoTab(item, category, name) {
             break;
     }
 
-    console.log(tab);
+    // console.log(tab);
     $("#tab" + tab).append(output);
 
 }
