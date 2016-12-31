@@ -72,12 +72,17 @@ function bindEvent() {
     //     // console.log(event);
     // });
 
-    $("body").on("mouseover", ".item-img", function() {
-        console.log('good');
-    });
-    $("body").on("mouseleave", ".item-img", function() {
-        console.log('good');
-    });
+    // $("body").on("mouseover", ".item-img", function() {
+    // });
+    // $("body").on("mouseleave", ".item-img", function() {
+    //     console.log('good');
+    // });
+
+
+    // $('#focus-item-img').on("mouseover", function() {
+    //     setMagnifier();
+    // });
+
 
     $('#search-self-item').keyup(function(event) {
         if (event.keyCode == 13) {
@@ -581,6 +586,7 @@ function showDetail(id) {
         //         '<img class="focus-item-sample-img" src="' + images[i] + '">'
         //     )
         // }
+
         $('#focus-item-sample-container')
         $('#focus-item-title').html(item.item.name);
         $('#focus-item-price>span:first-child').html("NT$ " + item.item.price);
@@ -592,6 +598,8 @@ function showDetail(id) {
         $('#current-item-container .item-img').attr("src", lativ_URL + item.image);
         $('#current-item-container .item-text').html(item.item.name);
 
+        unsetMagnifier();
+        setMagnifier();
 
     });
 

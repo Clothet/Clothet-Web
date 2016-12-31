@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="header.css">
     <link rel="stylesheet" type="text/css" href="tab.css">
     <link rel="stylesheet" type="text/css" href="select.css">
+    <link rel="stylesheet" type="text/css" href="magnifier.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.9/jquery.fullPage.css">
 </head>
 <!-- /////////////////////////////////////////////////// -->
@@ -22,23 +23,17 @@
 <body>
     <!-- alert -->
     <div id="alert-success" style="display: none" class="alert alert-success">
-       
         <strong id="alert-success-text">Success!</strong>
     </div>
     <div id="alert-fail" style="display: none" class="alert alert-danger">
-  
         <strong id="alert-fail-text">Fail!</strong>
     </div>
-
     <div id="alert-hint-container" style="display: none">
-        <div id="alert-hint-text" >
+        <div id="alert-hint-text">
             asdasdasd
         </div>
     </div>
     <!-- alert end -->
-    <!-- show big -->
-        <!-- <img id="show-big-img" src=""> -->
-    <!-- show big end -->
     <div style="display: none;" id="login-panel" class="form">
         <div style="position: absolute;right: 10px; top: 4px;font-size: 26px;cursor: pointer;" onclick="hideLoginPanel()">X</div>
         <ul class="tab-group">
@@ -100,7 +95,7 @@
         <!-- tab-content -->
     </div>
     <!-- header start -->
-    <header id="guest-header" >
+    <header id="guest-header">
         <a id="logo" href="/">酷衣櫥</a>
         <div id="link-container">
             <a onclick="changeMiddleColume('store')" href="#store">
@@ -113,17 +108,14 @@
                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                 <span>穿搭推薦</span>
             </a>
-
             <!-- login/signup  -->
             <!-- <div>asdsad</div> -->
             <a id="login-link" onclick="showLoginPanel()" href="#">
                 登入/註冊
             </a>
-            
             <!--  -->
         </div>
     </header>
-
     <header id="user-header" style="display: none;">
         <a id="logo" href="/">酷衣櫥</a>
         <div id="link-container">
@@ -144,7 +136,6 @@
             </a>
             <!-- login/signup  -->
             <!-- <div>asdsad</div> -->
-
             <div id="user" class="dropdown">
                 <div class="dropdown-toggle" type="button" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -152,7 +143,7 @@
                     <span class="caret"></span>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a onclick="logout();"  href="javascript:void(0)">登出</a></li>
+                    <li><a onclick="logout();" href="javascript:void(0)">登出</a></li>
                     <li><a href="./test.html">...</a></li>
                 </ul>
             </div>
@@ -303,7 +294,7 @@
                         </div>
                         <div style="background-color: #abb;text-align: center;padding: 15px 0;color: white;">推薦列表</div>
                         <div id="combination-panel">
-                           <!--  <div class="combination">
+                            <!--  <div class="combination">
                                 <div class="no-fav"></div>
                                 <div class="item-container">
                                     <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
@@ -327,7 +318,7 @@
                             <span>我的收藏</span>
                         </div>
                         <div id="my-bookmark"></div>
-                       <!--  <div class="combination">
+                        <!--  <div class="combination">
                             <div class="no-fav"></div>
                             <div class="item-container">
                                 <img class="item-img" src="./img/2870801_220.jpg" tabindex="0">
@@ -382,49 +373,52 @@
                 <div id="focus-item-container">
                     <img id="focus-item-img" src="./img/Duck.jpg">
                     <div id="size-container">
-<!--                         <span>M</span>
+                        <!--                         <span>M</span>
                         <span>L</span>
                         <span>XL</span>
- -->                    </div>
+ --></div>
                     <div id="focus-item-title">鴨子</div>
                     <div id="focus-item-note">品質優良
                         <!-- <br>100% 純棉</div> -->
-                    <hr>
-                    <div id="focus-item-price">
-                        <span>NT$9000</span>
-                        <!-- <span id="focus-item-sales">特價</span> -->
-                    </div>
-                    <button id="focus-item-buy-btn" type="button" class="btn btn-default ">前往購買</button>
-                    <hr>
-                    <div id="focus-item-sample-container">
-                        <img class="focus-item-sample-img" src="./img/Duck.jpg ">
-                        <img class="focus-item-sample-img" src="./img/Duck.jpg ">
+                        <hr>
+                        <div id="focus-item-price">
+                            <span>NT$9000</span>
+                            <!-- <span id="focus-item-sales">特價</span> -->
+                        </div>
+                        <button id="focus-item-buy-btn" type="button" class="btn btn-default ">前往購買</button>
+                        <hr>
+                        <div id="focus-item-sample-container">
+                            <img class="focus-item-sample-img" src="./img/Duck.jpg ">
+                            <img class="focus-item-sample-img" src="./img/Duck.jpg ">
+                        </div>
                     </div>
                 </div>
             </div>
+            <img id="gif" width="100%" src="./img/fire.gif" style="display:none;position: absolute;left: 0%;top:30%;">
         </div>
-        <img id="gif" width="100%" src="./img/fire.gif" style="display:none;position: absolute;left: 0%;top:30%;">
-    </div>
-    <!-- script -->
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
-    <script src="./js/html_template.js "></script>
-    <script src="./index.js "></script>
-    <script src="js/login.js"></script>
-    <script src="js/add-feature.js"></script>
-    <script>
-    $('.carousel').carousel({
-        interval: false
-    });
-    $('#myCarousel').on('slide.bs.carousel', function(event) {
-        // do something…
-        console.log(event)
-        console.log(event.direction)
-        console.log(event.relatedTarget)
-    })
-    </script>
+        <!-- script -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+        <script src="./js/html_template.js "></script>
+
+        <script src="./index.js "></script>
+        <script src="js/login.js"></script>
+        <script src="js/jquery.zoom.min.js"></script>
+        <script src="js/add-feature.js"></script>
+        
+        <script>
+        $('.carousel').carousel({
+            interval: false
+        });
+        $('#myCarousel').on('slide.bs.carousel', function(event) {
+            // do something…
+            console.log(event)
+            console.log(event.direction)
+            console.log(event.relatedTarget)
+        })
+        </script>
 
 </html>
