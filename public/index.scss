@@ -12,6 +12,8 @@
 }
 
 #left-column {
+    height: 900px;
+    
     border-top: 1px solid #ccc;
     .inner-header {
         background-color: #87AFC6;
@@ -279,6 +281,7 @@
 */
 
 #right-column {
+    background:white;
     height: auto;
     border-top: 1px solid #ccc;
     border-left: 1px solid #ccc;

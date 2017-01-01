@@ -33,16 +33,17 @@
     }
     .tab-content {
 
-        height: 100vh;
+        height: 900px;
 
         // margin-bottom: 100px;
     }
     .tab-pane {
+        height: 900px;
+        
         // display: inner-flex;
         // align-items: center;
         // justify-content: center;
         // text-align: center;
-        height: 100%;
         overflow-y: scroll;
     }
 }

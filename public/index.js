@@ -169,30 +169,30 @@ function initializeTabSortable() {
             }
         });
     }
-    new Sortable(document.getElementById("trash-can"), {
-        animation: 150, // ms, animation speed moving items when sorting, `0` — 
-        group: "omega",
-        onAdd: function( /**Event*/ evt) {
-            console.log('add')
-            $('#trash-can').empty();
-            trash_num++;
-            if (trash_num % 5 == 0) {
-                console.log(123)
-                $('#gif').show();
-                setTimeout(function() {
-                    $('#gif').hide();
-                }, 3000);
-            }
-        },
+    // new Sortable(document.getElementById("trash-can"), {
+    //     animation: 150, // ms, animation speed moving items when sorting, `0` — 
+    //     group: "omega",
+    //     onAdd: function( /**Event*/ evt) {
+    //         console.log('add')
+    //         $('#trash-can').empty();
+    //         trash_num++;
+    //         if (trash_num % 5 == 0) {
+    //             console.log(123)
+    //             $('#gif').show();
+    //             setTimeout(function() {
+    //                 $('#gif').hide();
+    //             }, 3000);
+    //         }
+    //     },
 
-        onEnd: function( /**Event*/ evt) {
-            console.log(88)
+    //     onEnd: function( /**Event*/ evt) {
+    //         console.log(88)
 
-            evt.oldIndex; // element's old index within parent
-            evt.newIndex; // element's new index within parent
-        },
+    //         evt.oldIndex; // element's old index within parent
+    //         evt.newIndex; // element's new index within parent
+    //     },
 
-    });
+    // });
 }
 
 function addEquipment(combination_id) {
@@ -358,6 +358,7 @@ function changeMiddleColume(page) {
     } else if (page == 'combination') {
         b.fadeIn(200);
     } else {
+        showMyRecommendation();
         c.fadeIn(200);
     }
 }
