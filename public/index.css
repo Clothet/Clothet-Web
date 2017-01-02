@@ -138,6 +138,8 @@
       height: 60px;
       text-align: center; }
   #middle-column #slide-combination {
+    height: 900px;
+    overflow-y: scroll;
     width: 100%; }
     #middle-column #slide-combination #current-item-container {
       width: 100%;

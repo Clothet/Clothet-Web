@@ -176,6 +176,8 @@
     // combination
     // combination
     #slide-combination {
+        height: 900px;
+        overflow-y: scroll;
         width: 100%;
         #current-item-container {
             width: 100%;
