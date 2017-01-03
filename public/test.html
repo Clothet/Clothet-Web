@@ -5,6 +5,7 @@
     <title>test</title>
 </head>
 <style type="text/css">
+
 .resize-drag {
     /*     background-color: #29e;
     color: white;
@@ -17,16 +18,24 @@
     left: 300px;
     /* This makes things *much* easier
     /* box-sizing: border-box; */
-    border: 2px solid rgba(0, 0, 0, 0);
 }
 
 .resize-drag:hover {
     border: 2px solid #ccc;
 }
+.resize-drag:focus {
+    border: 2px solid #ccc;
+}
 
 .resize-container {
-    width: 800px;
-    height: 1000px;
+    position: relative;
+    width: auto;
+    height: auto;
+}
+
+.item{
+    width: 150px;
+    height: 200px;
 }
 </style>
 
@@ -34,26 +43,32 @@
     <div class="resize-container">
         <h1 style="text-align: center; font-weight: 900 !important;">試衣間</h1>
         <marquee style="font-size: 24px;font-weight: bold;" direction="right" height="30" scrollamount="5" behavior="alternate">歡迎來到試衣間</marquee>
-        <img height="500px" src="./img/people.PNG">
-        <img width="150px" class="resize-drag" id="shirt" src="./img/sample-shirt.png" data-border="0" />
-        <img width="150px" class="resize-drag" id="shirt" src="./img/sample-pants.png" data-border="0" />
-        <img width="200px" class="resize-drag" id="shirt" src="./img/sample-skirt.png" data-border="0" />
-        <img width="150px" class="resize-drag" id="shirt" src="./img/sample-pants.png" data-border="0" />
-        <img width="70px" class="resize-drag" id="shirt" src="./img/sample-hat.png" data-border="0" />
+        <img height="500px" class="resize-drag" src="./img/people.PNG">
+        <img style="z-index: 9999999999" height="150px" class="resize-drag" src="./img/head1.png">
         <div style="z-index: -999; background-size: 100% 100%;position: absolute;right:0; top:0;width: 300px; height:500px;background-image: url('./img/closet.jpeg');background-repeat: no-repeat;"></div>
+        <div style="position: fixed;right: 0;bottom: 0;width: 200px;height: 100px;background-color: pink; z-index: 9999999999;text-align: center;line-height: 100px;" >
+            <button id="minor">-</button>
+            <input id="size" style="width: 120px;text-align:center;height: 60px;font-size: 24px;" type="" name="">
+            <button id="plus">+</button>
+
+        </div>
     </div>
 </body>
 <script src="http://code.interactjs.io/v1.2.6/interact.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
 var z = 0;
-$('.resize-drag').click(function(event) {
-    ++z;
 
-    $(this).css({
-        'z-index': z
+function setZ() {
+    $('.resize-drag').click(function(event) {
+        ++z;
+
+        $(this).css({
+            'z-index': z
+        });
     });
-});
+}
+
 
 interact('.resize-drag')
     .draggable({
@@ -61,7 +76,7 @@ interact('.resize-drag')
 
     })
     .resizable({
-        preserveAspectRatio: true,
+        preserveAspectRatio: false,
         edges: {
             left: true,
             right: true,
@@ -87,7 +102,6 @@ interact('.resize-drag')
 
         target.setAttribute('data-x', x);
         target.setAttribute('data-y', y);
-        target.textContent = Math.round(event.rect.width) + '×' + Math.round(event.rect.height);
     });
 
 function dragMoveListener(event) {
@@ -106,20 +120,73 @@ function dragMoveListener(event) {
     target.setAttribute('data-y', y);
 }
 
-// $('#shirt').click(function() {
-//     console.log()
-//     console.log($(this).attr('data-border'))
-//     if ($(this).attr('data-border') == "0") {
-//         $(this).css('border', "2px solid #ccc")
-//         $(this).attr('data-border', "1")
-//     } else {
-//         $(this).css('border', "")
-//         $(this).attr('data-border', "0")
-//     }
-// })
-
-// this is used later in the resizing and gesture demos
 window.dragMoveListener = dragMoveListener;
+</script>
+<script>
+var BASE_URL = 'http://exwd.csie.org:5678';
+var lativ_URL = 'http://www.lativ.com.tw/';
+var item;
+
+$.ajax({
+    type: 'GET',
+    url: BASE_URL + '/api/equipments',
+    xhrFields: {
+        withCredentials: true
+    },
+
+    success: function(data) {
+        var left = 0;
+        var top = -50;
+        var counter = 0;
+        for (var i in data) {
+            counter++;
+            if (counter % 2 == 0) {
+                top += 50;
+                left = 800
+            } else {
+                left = 550
+            }
+            if (data[i] != null) {
+                console.log(data[i]);
+                putIn(data[i].image, left, top);
+            }
+        }
+        setZ();
+        bindSize();
+    },
+    error: function(e) {
+        console.log(e);
+    }
+})
+
+function putIn(url, l, t) {
+    var u = lativ_URL + url;
+    
+    var template = `<div style="left:${l}px;top:${t}px;background: url('${u}');background-size:150px;background-repeat:no-repeat;background-position:center -8px;" class="item resize-drag"/>`
+
+    $('.resize-container').append(template)
+}
+function setSize(){
+
+}
+var size
+function bindSize(){
+    $('.resize-drag').click(function(event){
+        item = $(event.target);
+        size = $(event.target).css('background-size').substring(0,3);
+        $('#size').val(size)
+        console.log(item)
+    })
+}
+$('#plus').click(function(){
+    $('#size').val(size = (parseInt(size)+30));
+    item.css('background-size',size+'px');
+})
+$('#minor').click(function(){
+    $('#size').val(size = (parseInt(size)-30));
+
+    item.css('background-size',size+'px');
+})
 </script>
 
 </html>
