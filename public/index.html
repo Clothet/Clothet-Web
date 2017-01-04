@@ -30,7 +30,6 @@
     </div>
     <div id="alert-hint-container" style="display: none">
         <div id="alert-hint-text">
-
         </div>
     </div>
     <!-- alert end -->
@@ -192,14 +191,14 @@
                         <div id="tab5" class="tab-pane fade">
                         </div>
                     </div>
-<!--                     <div id="trash-can">
+                    <!--                     <div id="trash-can">
                         <img width="50px" src="./img/remove.png">
                     </div> -->
                 </div>
                 <!-- ********* -->
             </div>
             <!-- {/*right side colume*/} -->
-            <div id="middle-column"  class="col-sm-6 nopadding main-column ">
+            <div id="middle-column" class="col-sm-6 nopadding main-column ">
                 <!-- ********************************************************************************************** -->
                 <!--                 <div class="section">
                     <div class="slide"> Slide 1 </div>
@@ -208,12 +207,13 @@
                     <div class="slide"> Slide 4 </div>
                 </div> -->
                 <!-- ********************************************************************************************** -->
-                <div style="background-color:white;position: relative; height: 100%;" >
+                <div style="background-color:white;position: relative; height: 100%;">
                     <div id="slide-store" style="position: absolute; height: 100%;">
                         <div class="inner-header">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                             <span>商店區</span>
-                        </div>                        <div id="class-container">
+                        </div>
+                        <div id="class-container">
                             <div>
                                 <div class="class-icon" id="male-icon"> </div>
                                 <div class="class-icon" id="female-icon"> </div>
@@ -313,7 +313,6 @@
                             </div>
                         </div> -->
                     </div>
-
                 </div>
                 <!--  -->
             </div>
@@ -344,32 +343,29 @@
                     </div>
                 </div>
             </div>
-            
         </div>
-        <!-- script -->
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
-        <script src="./js/html_template.js "></script>
-
-        <script src="./index.js "></script>
-        <script src="js/login.js"></script>
-        <script src="js/jquery.zoom.min.js"></script>
-        <script src="js/add-feature.js"></script>
-
-        <script>
-        $('.carousel').carousel({
-            interval: false
-        });
-        $('#myCarousel').on('slide.bs.carousel', function(event) {
-            // do something…
-            console.log(event)
-            console.log(event.direction)
-            console.log(event.relatedTarget)
-        })
-        </script>
-
+</body>
+<!-- script -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+<script src="./js/html_template.js "></script>
+<script src="./index.js "></script>
+<script src="js/login.js"></script>
+<script src="js/jquery.zoom.min.js"></script>
+<script src="js/add-feature.js"></script>
+<script>
+$('.carousel').carousel({
+    interval: false
+});
+$('#myCarousel').on('slide.bs.carousel', function(event) {
+    // do something…
+    console.log(event)
+    console.log(event.direction)
+    console.log(event.relatedTarget)
+})
+</script>
 
 </html>
